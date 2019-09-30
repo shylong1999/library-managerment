@@ -1,0 +1,147 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+.dangky{
+	height: 300px;
+	width: 500px;
+	margin: 0px auto;
+	margin-top: 100px;
+	border: 2px solid #DDDDDD;
+	background: white;
+}
+.dangky h3{
+	background: green;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	height: 30px;
+	font-size: 25px;
+}
+.dangky a{
+	font-size: 20px;
+}
+.dangky form table tr td{
+	padding: 20px;
+	font-size: 25px;
+
+}
+.dangky form table tr td{
+	padding:5px 10px;
+}
+.list {
+	width: 600px;
+	margin: auto;
+	margin-top: 50px;
+}
+.list table{
+	width: 600px;
+	text-align: center;
+
+}
+.list h3{
+	height: 30px;
+	text-align: center;
+	background: #009688;
+	color: white;
+	padding: 5px;
+	font-size: 30px;
+}
+.suathongtin{
+	height: 300px;
+	width: 500px;
+	margin: 0px auto;
+	margin-top: 100px;
+	border: 2px solid #DDDDDD;
+	background: white;
+}
+.suathongtin h3{
+	background: green;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	height: 30px;
+	font-size: 25px;
+}
+.suathongtin a{
+	font-size: 20px;
+}
+.suathongtin form table tr td{
+	padding: 20px;
+	font-size: 25px;
+
+}
+.suathongtin form table tr td{
+	padding:5px 10px;
+}
+
+.search{
+	width: 800px;
+	margin: auto;
+	margin-top:50px;
+}
+.log-out{
+	margin-top: 100px;
+	margin-right: 10px;
+	float: right;
+	font-size: 30px;
+	color: #B71867;
+}
+.log-out:hover{
+	color: #ECDA17;
+}
+.login{
+	height: 300px;
+	width: 400px;
+	margin: 0px auto;
+	margin-top: 100px;
+	border: 2px solid #DDDDDD;
+	background: white;
+}
+.login h2{
+	background: #009688;
+	color: white;
+	padding: 6px;
+	text-align: center;
+	height: 50px;
+	font-size: 25px;
+}
+.login form table tr td{
+	padding: 20px;
+	font-size: 25px;
+}
+.dangky_acc{
+	height: 300px;
+	width: 400px;
+	margin: 0px auto;
+	margin-top: 100px;
+	border: 2px solid #DDDDDD;
+	background: white;
+}
+.dangky_acc h3{
+	background: #009688;
+	color: white;
+	padding: 6px;
+	text-align: center;
+	height: 50px;
+	font-size: 25px;
+}
+.dangky_acc a{
+	font-size: 20px;
+}
+.dangky_acc form table tr td{
+	padding: 20px;
+	font-size: 25px;
+
+}
+.dangky_acc form table tr td{
+	padding:5px 10px;
+}
+
+footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+      width: 1180px;
+}
