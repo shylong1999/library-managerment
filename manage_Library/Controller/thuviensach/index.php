@@ -24,7 +24,8 @@
 				if (isset($_POST['tensach']) && isset($_POST['tacgia'])) {
 					$name_book = $_POST['tensach'];
 					$author = $_POST['tacgia'];
-					if($db->insertImg($name_book,$author,$file_name,$file_type,$file_size)) {
+					$description = $_POST['description'];
+					if($db->insertImg($name_book,$author,$description,$file_name,$file_type,$file_size)) {
 						$success_img[] = 'add_success';
 					}
 				}	
@@ -34,9 +35,15 @@
 			require_once('View/thuviensach/add_book.php');
 			break;
 
-		case '':
-			# code...
-			break;
+		case 'infoBook':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $table = 'sach';
+                $dataBook = $db->getDataID($table,$id);
+            }
+
+            require_once('View/thuviensach/infoBook.php');
+            break;
 		case 'listSach':
 			$tblTable = 'sach';
 			$data_Sach = $db->getAllData($tblTable);

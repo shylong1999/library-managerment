@@ -52,6 +52,21 @@
 
 		}
 
+
+		public function getDataStudents($table,$username)
+		{
+			$sql = "SELECT * FROM $table WHERE username = '$username'";
+			$this->execute($sql);
+
+			if ($this->num_rows() != 0) {
+					$data = mysqli_fetch_array($this->result);
+				}
+			else{
+				$data = 0;
+			}	
+			return $data;
+		}
+
 		public function getAllData($table){
 			$sql = "SELECT * FROM $table";
 			$this->execute($sql);
@@ -105,7 +120,7 @@
 		} 
 		public function testUser($table,$user,$pass)
 		{
-			$sql = "SELECT * FROM $table WHERE user = '$user' and pass = '$pass' LIMIT 1";
+			$sql = "SELECT * FROM $table WHERE user = '".$user."' and pass = '".$pass."' LIMIT 1";
 			$this->execute($sql);
 			if ($this->num_rows() == 0) {
 		 		$data = 0;
@@ -123,8 +138,12 @@
 			return $this->execute($sql);
 		}
 
+        public function insertStudent($table,$studentID,$name,$phoneNumber,$username){
+            $sql = "INSERT INTO $table(studentID,name,phoneNumber,username) VALUES ('".$studentID."','".$name."','".$phoneNumber."','".$username."')";
+            return $this->execute($sql);
+        }
 		public function testUserAcc($table,$username){
-			$sql = "SELECT * FROM $table WHERE user ='$username'";
+			$sql = "SELECT * FROM $table WHERE user ='".$username."'";
 			$this->execute($sql);
 			if ($this->num_rows() == 0) {
 		 		$data = 0;
@@ -137,14 +156,85 @@
 		 	return $data;
 		}
 
-		public function insertImg($name_book,$author,$file_name,$file_type,$file_size){
-			$sql = "INSERT INTO sach(masach,tensach,tacgia,name,type,size) VALUES (null,'$name_book','$author','$file_name','$file_type','$file_size')";
+		public function insertImg($name_book,$author,$description,$file_name,$file_type,$file_size){
+			$sql = "INSERT INTO sach(masach,tensach,tacgia,description,name,type,size) VALUES (null,'$name_book','$author','$description','$file_name','$file_type','$file_size')";
 			return $this->execute($sql);
 		}
 		public function searchImg($table,$file_name){
 			$sql = "SELECT * FROM $table WHERE name = '$file_name'";
 			return $this->execute($sql);
 		}
+
+		public function getCountAcc($table,$user,$oldpass)
+		{
+			$sql = "SELECT * FROM $table WHERE user ='".$user."' AND pass = '".$oldpass."'";
+			$this->execute($sql);
+			if ($this->num_rows() == 0) {
+		 		$data = 0;
+		 	}
+		 	else{
+		 		while ($datas = $this->getData()) {
+		 			$data[] = $datas; 
+		 		}
+		 	}
+		 	return $data;
+		}
+		public function updatePassword($table,$user,$newpass)
+		{
+
+			$sql = "UPDATE $table SET pass = '".$newpass."' WHERE user = '".$user."'";
+			return $this->execute($sql);
+		}
+
+		public function insertRequest($table, $username,$message){
+		    $sql = "INSERT INTO $table(requestID,username,message,logs) VALUES (null,'".$username."','".$message."',now())";
+		    return $this->execute($sql);
+        }
+
+		public function getDataRequests($table1,$table2){
+		    $sql = "SELECT T1.name, T2.message, T2.logs, T2.requestID FROM $table1 T1 INNER JOIN $table2 T2 ON T1.username = T2.username";
+            $this->execute($sql);
+            if ($this->num_rows() == 0) {
+                $data = 0;
+            }
+            else{
+                while ($datas = $this->getData()) {
+                    $data[] = $datas;
+                }
+            }
+            return $data;
+        }
+        public function deleteRequest($table,$requestID)
+        {
+            $sql = "DELETE FROM $table WHERE requestID = '$requestID'";
+            return $this->execute($sql);
+        }
+        public function getDataBorrowBook($table1,$table2,$username){
+		    $sql = "SELECT T1.name, T1.studentID, T2.tensach, T2.ngaymuon FROM $table1 T1 INNER JOIN $table2 T2 ON T1.studentID = T2.mssv WHERE T1.username = '".$username."'";
+            $this->execute($sql);
+            if ($this->num_rows() == 0) {
+                $data = 0;
+            }
+            else{
+                while ($datas = $this->getData()) {
+                    $data[] = $datas;
+                }
+            }
+            return $data;
+        }
+        public function getDataAccounts($table1,$table2){
+		    $sql = "SELECT T1.studentID, T1.name, T1.class, T1.username, T1.phoneNumber FROM $table1 T1  INNER JOIN $table2 T2 ON T1.username = T2.user";
+            $this->execute($sql);
+            if ($this->num_rows() == 0) {
+                $data = 0;
+            }
+            else{
+                while ($datas = $this->getData()) {
+                    $data[] = $datas;
+                }
+            }
+            return $data;
+        }
 	}
 
  ?>

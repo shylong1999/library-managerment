@@ -34,5 +34,14 @@
 		case 'thuvien-sach':
 			require_once('Controller/thuviensach/index.php');
 			break;
+		case 'students':
+			require_once('Controller/student/index.php');
+			break;
+        case 'requests':
+            require_once('Controller/request/index.php');
+            break;
+        case 'accounts':
+            require_once('Controller/account/index.php');
+            break;
 	}
 ?>
