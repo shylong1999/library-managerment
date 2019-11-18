@@ -13,6 +13,8 @@
 
 	switch ($action) {
 		case 'add':{
+		    $table = 'sach';
+		    $dataBook = $db->getAllData($table);
 			if (isset($_POST['add_info'])) {
 				$hoten = $_POST['hoten'];
 				$mssv = $_POST['mssv'];
@@ -27,6 +29,8 @@
 			break;
 		}
 		case 'edit':
+            $table = 'sach';
+            $dataBook = $db->getAllData($table);
 			if (isset($_GET['id'])) {
 				$id = $_GET['id'];
 				$table = "muonsach";
@@ -78,6 +82,7 @@
 				$test_User = $db->testUser($tblTable,$user,$pass);
 				if ($test_User >=1) {
 					$_SESSION['user'] = $user;
+					$_SESSION['level'] =  $test_User['0']['level'];
 					if (isset($_POST['remember'])) { //kiểm tra xem có check nhớ mật khẩu hay không?
 						setcookie('user',$user,time()+3600,'/','',0,0);
 						setcookie('pass',$pass_,time()+3600,'/','',0,0);
@@ -150,7 +155,8 @@
                     echo "<script>alert('Incorrect verification code');</script>" ;
                 } else{
                 if ($count < 1) {
-					if($db->insertAcc($username,$password) && $db->insertStudent($table,$studentID,$name,$phoneNumber,$username)){
+					if($db->insertAcc($username,$password) &&  $db->insertStudent($table,$studentID,$name,$phoneNumber,$username)){
+
 						$success[] = 'add_success';
 					}
 				}
@@ -162,7 +168,19 @@
 
 			require_once('View/dangnhap/dangky.php');
 			break;
-
+        case 'view':
+            $tblTable1 = "student";
+            $tblTable2 = "request";
+            $dataRequest = $db->getDataRequests($tblTable1,$tblTable2);
+            $table = 'sach';
+            $dataBook = $db->getAllData($table);
+            $tblTable = 'muonsach';
+            $data = $db->getAllData($tblTable);
+            $tableRequest = 'request';
+            $totalRequest = $db->getTotalRequest($tableRequest);
+            $tableAccount = 'thanhvien';
+            $totalAccount = $db->getTotalAccount($tableAccount);
+            require_once ('View/muonsach/View.php');
 		default:
 			# code...
 			break;

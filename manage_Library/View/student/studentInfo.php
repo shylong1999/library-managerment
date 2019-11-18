@@ -145,7 +145,7 @@
 
                                 <div class="form-group">
                                     <label>phoneNumber: </label>
-                                    <?php echo htmlentities($dataStudents['phoneNumber']); ?>
+                                    <?php echo "0".htmlentities($dataStudents['phoneNumber']); ?>
                                 </div>
                                 <div class="form-group">
                                     <label>Email: </label>

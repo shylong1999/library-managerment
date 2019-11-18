@@ -1,4 +1,5 @@
-<?php 
+<?php
+    session_start();
 	if (isset($_GET['action'])) {
 		$action = $_GET['action'];
 	}
@@ -20,7 +21,7 @@
 
 
 				$extensions = array("jpeg","jpg","png");
-				move_uploaded_file($file_tmp,"C:/xampp/htdocs/manage_Library/image/$file_name" );
+				move_uploaded_file($file_tmp,"C:/xampp/htdocs/quanlythuvien/manage_Library/View/image/$file_name" );
 				if (isset($_POST['tensach']) && isset($_POST['tacgia'])) {
 					$name_book = $_POST['tensach'];
 					$author = $_POST['tacgia'];

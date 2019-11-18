@@ -134,12 +134,12 @@
 		}
 
 		public function insertAcc($username,$password){
-			$sql = "INSERT INTO thanhvien(idadmin,user,pass) VALUES (null,'$username','$password')";
+			$sql = "INSERT INTO thanhvien(idadmin,user,pass) VALUES (null,'".$username."','".$password."')";
 			return $this->execute($sql);
 		}
 
         public function insertStudent($table,$studentID,$name,$phoneNumber,$username){
-            $sql = "INSERT INTO $table(studentID,name,phoneNumber,username) VALUES ('".$studentID."','".$name."','".$phoneNumber."','".$username."')";
+            $sql = "INSERT INTO $table(studentID,name,username,phoneNumber) VALUES ('".$studentID."','".$name."','".$username."','".$phoneNumber."')";
             return $this->execute($sql);
         }
 		public function testUserAcc($table,$username){
@@ -157,7 +157,7 @@
 		}
 
 		public function insertImg($name_book,$author,$description,$file_name,$file_type,$file_size){
-			$sql = "INSERT INTO sach(masach,tensach,tacgia,description,name,type,size) VALUES (null,'$name_book','$author','$description','$file_name','$file_type','$file_size')";
+			$sql = "INSERT INTO sach(id,tensach,tacgia,description,name,type,size) VALUES (null,'$name_book','$author','$description','$file_name','$file_type','$file_size')";
 			return $this->execute($sql);
 		}
 		public function searchImg($table,$file_name){
@@ -235,6 +235,34 @@
             }
             return $data;
         }
+
+        public function getTotalRequest($table){
+		    $sql = "SELECT COUNT(*) as totalRequest FROM $table";
+            $this->execute($sql);
+            if ($this->num_rows() == 0) {
+                $data = 0;
+            }
+            else{
+                while ($datas = $this->getData()) {
+                    $data[] = $datas;
+                }
+            }
+            return $data;
+        }
+        public function getTotalAccount($table){
+            $sql = "SELECT COUNT(*) as totalAccount FROM $table";
+            $this->execute($sql);
+            if ($this->num_rows() == 0) {
+                $data = 0;
+            }
+            else{
+                while ($datas = $this->getData()) {
+                    $data[] = $datas;
+                }
+            }
+            return $data;
+        }
+
 	}
 
  ?>

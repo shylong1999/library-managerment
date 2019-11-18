@@ -1,77 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="fixed accounts sign-in">
 <head>
     <meta charset="UTF-8">
     <title>Đăng nhập</title>
 </head>
-<body>
-<div class="login">
-    <h2>Đăng nhập</h2>
-    <form action="" method="POST">
-        <!-- <input type="hidden" name="s" value="1"> -->
-
-        <div class="form-group">
-            <label for="user"><i class="glyphicon glyphicon-user"></i>Username:</label>
-            <input type="text" class="form-control" name="user"
-                   value="<?php if (isset($_COOKIE['user'])) echo $_COOKIE['user']; ?>">
+<body style="background: #1b6d85">
+<div class="wrap">
+    <!-- page BODY -->
+    <!-- ========================================================= -->
+    <div class="page-body animated slideInDown">
+        <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+        <!--LOGO-->
+        <div class="logo">
+            <img alt="logo" src="View/images/logo-dark.png" />
         </div>
-        <div class="form-group">
-            <label for="pass"><i class="glyphicon glyphicon-lock"></i>Password:</label>
-            <input type="password" class="form-control" name="pass"
-                   value="<?php if (isset($_COOKIE['user'])) echo $_COOKIE['pass']; ?>">
+        <div class="box">
+            <!--SIGN IN FORM-->
+            <div class="panel mb-none">
+                <div class="panel-content bg-scale-0">
+                    <form method="post" action="">
+                        <div class="form-group mt-md">
+                            <span class="input-with-icon">
+                                <input type="text" class="form-control" id="user" name="user" placeholder="Username" value="<?php if (isset($_COOKIE['user'])) echo $_COOKIE['user']; ?>">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <span class="input-with-icon">
+                                <input type="password" class="form-control" id="password" name="pass" placeholder="Password" value="<?php if (isset($_COOKIE['user'])) echo $_COOKIE['pass']; ?>">
+                                <i class="fa fa-key"></i>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox-custom checkbox-primary">
+                                <input type="checkbox" id="remember-me" name="remember" value="option1" <?php if (isset($_COOKIE['user'])) echo "checked"; ?>>
+                                <label class="check" for="remember-me">Remember me</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+<!--                            <a href="index.html" class="btn btn-primary btn-block">Sign in</a>-->
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        </div>
+                        <div class="form-group text-center">
+                            <a href="pages_forgot-password.html">Forgot password?</a>
+                            <hr/>
+                            <span>Don't have an account?</span>
+<!--                            <a href="pages_register.html" class="btn btn-block mt-sm">Register</a>-->
+                            <a href="index.php?controller=muon-sach&action=dangky" class="btn btn-block mt-sm">Đăng ký</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="checkbox" style="margin-left: 100px;">
-            <label><input type="checkbox" name="remember" <?php if (isset($_COOKIE['user'])) echo "checked"; ?> >
-                Remember me</label>
-            <label> <a href="index.php?controller=muon-sach&action=dangky">Đăng ký</a></label>
-        </div>
-
-        <button type="submit" class="btn btn-success" style="margin-left: 150px;">Submit</button>
-        <!-- <table>
-            <tr>
-                <td>Username</td>
-                <td><input type="text" name="user" required="required" placeholder="Nhập tài khoản"></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="password" name="pass" required="required" placeholder="Nhập mật khẩu"></td>
-            </tr>
-            <tr style="text-align: center;">
-                <td><a href="index.php?controller=muon-sach&action=dangky">Đăng ký</a></td>
-                <td><input style="font-size: 20px;" type="submit" name="dangnhap" value="Đăng nhập"></td>
-            </tr>
-        </table> -->
-    </form>
-
-    <!-- Modal -->
-    <!-- <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-         -->
-    <!-- Modal content-->
-    <!-- <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Modal Header</h4>
-        </div>
-    <div class="modal-body">
-        <p></p>
+        <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
-  </div>
-
 </div>
-</div> -->
 
-    <?php
-        if (isset($thatbai) && in_array('thatbai', $thatbai)) {
-            // echo "<p style = 'color: red; text-align:center;'>Đăng nhập không thành công</p>";
-            echo " <div class='alert alert-danger'>
-					<strong>Đăng nhập không thành công!</strong> 
-						</div>";
-        }
-    ?>
-</div>
 </body>
 </html>
