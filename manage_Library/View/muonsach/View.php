@@ -194,63 +194,48 @@
                 <!-- leftside content header -->
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
-                        <li><i class="fa fa-columns" aria-hidden="true"></i><a href="#">Thư viện sách</a></li>
-                        <li><a>Thêm sách</a></li>
+                        <li><i class="fa fa-paper-plane" aria-hidden="true"></i><a href="#">Thư viện sách</a></li>
+                        <li><a>Danh sách</a></li>
                     </ul>
                 </div>
             </div>
             <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
             <div class="row animated fadeInUp">
-                <div class="col-sm-10 col-md-6 col-md-offset-2">
-                    <h4 class="section-subtitle"><b>Thêm sách</b></h4>
-                    <div class="panel">
+                <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                <!--WIDGET POST TYPE 1-->
+                <?php foreach ($data_Sach as $value) {?>
+                <div class="col-sm-6 col-md-3">
+                    <!--Post type 1-->
+
+                    <div class="panel widget-post ">
+                        <div class="panel-header">
+                            <?php
+                                $pathToBook = $value['name'];
+//                            echo '<img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '" />';
+                            echo '<a  href="../manage_Library/View/image/' . $pathToBook . '">
+                                <img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '">
+                            </a>'
+                            ?>
+
+<!--                            <img style="height: 20px;">-->
+<!--                            <div class="main-tag"><span>Adventure</span></div>-->
+                        </div>
                         <div class="panel-content">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form id="inline-validation" class="form-horizontal form-stripe" action="" method="post" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <label for="tensach" class="col-sm-3 control-label">Tên sách<span class="required">*</span></label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="tensach" name="tensach" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tacgia" class="col-sm-3 control-label">Tên tác giả<span class="required">*</span></label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="tacgia" name="tacgia" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="description" class="col-sm-3 control-label">Mô tả</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="description" name="description" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="fileToUpload" class="col-sm-3 control-label">Select image to upload<span class="required">*</span></label>
-                                            <div class="col-sm-9">
-                                                <input type="file" class="form-control" id="fileToUpload" name="fileToUpload" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-3 col-sm-9">
-                                                <input type="submit" class="btn btn-primary" name="submit" value="Upload" onclick="return confirm('Bạn có chắc chắn muốn thêm sách?')">
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <?php
-                                        if (isset($success) && in_array('add_success', $success)) {
-                                            echo "<div class='alert alert-success' style='text-align: center'>
-					<strong>Thêm sách thành công!</strong> 
-						</div>";
-                                        }
-                                    ?>
-                                </div>
+                            <div class="text text-center">
+                                <h4><a href="index.php?controller=thuvien-sach&action=infoBook&id=<?php echo $value['id']; ?>"><?php echo $value['tensach']; ?></a></h4>
+
+                                <h6 class="color-muted"><a><?php echo $value['tacgia']; ?></a></h6>
+<!--                                <hr class="mv-xs mh-lg" />-->
+<!--                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, illum iste magni nam quo saepe temporibus</p>-->
                             </div>
                         </div>
+<!--                        <div class="panel-footer bg-scale-0 text-center pv-xs"><a href="#">Read more</a></div>-->
                     </div>
+
                 </div>
+                <?php } ?>
             </div>
+
             <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
         </div>
         <!-- RIGHT SIDEBAR -->

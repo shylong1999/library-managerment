@@ -91,7 +91,7 @@
 						setcookie('pass','',time()-3600,'/','',0,0);
 					}
 					
-					header('location: index.php?controller=muon-sach&action=list');
+					header('location: index.php?controller=thuvien-sach&action=listSach');
 				}
 				else{
 					$thatbai[] = 'thatbai';
@@ -178,6 +178,13 @@
             $data = $db->getAllData($tblTable);
             $tableRequest = 'request';
             $totalRequest = $db->getTotalRequest($tableRequest);
+
+            $tblTable12 = 'student';
+            $username = $_SESSION['user'];
+            $dataStudents = $db->getDataStudents($tblTable12, $username);
+
+            $tblTable11 = 'sach';
+            $data_Sach = $db->getAllData($tblTable11);
             $tableAccount = 'thanhvien';
             $totalAccount = $db->getTotalAccount($tableAccount);
             require_once ('View/muonsach/View.php');

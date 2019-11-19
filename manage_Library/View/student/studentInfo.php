@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <?php
     //tiến hành kiểm tra là người dùng đã đăng nhập hay chưa
     //nếu chưa, chuyển hướng người dùng ra lại trang đăng nhập
@@ -6,191 +6,484 @@
         header('Location: index.php?controller=muon-sach&action=login');
     }
 ?>
-<html lang="en">
+<html lang="en" class="fixed left-sidebar-top">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Danh sách thành viên</title>
 
 </head>
+
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Logo</a>
+<div class="wrap">
+    <!-- page HEADER -->
+    <!-- ========================================================= -->
+    <div class="page-header">
+        <!-- LEFTSIDE header -->
+        <div class="leftside-header">
+            <div class="logo">
+                <a href="index.html" class="on-click">
+                    <img alt="logo" src="View/images/header-logo.png"/>
+                </a>
+            </div>
+            <div id="menu-toggle" class="visible-xs toggle-left-sidebar" data-toggle-class="left-sidebar-open"
+                 data-target="html">
+                <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="index.php?controller=thuvien-sach&action=listSach">Listsach</a></li>
-                <li><a href="index.php?controller=muon-sach&action=list">List mượn sách</a></li>
-                <li><a href="index.php?controller=muon-sach&action=add">Đăng kí mượn sách</a></li>
-                <li><a href="abc.php">Đăng xuất</a></li>
-            </ul>
-            <!-- <div class="search"> -->
-            <form class="navbar-form navbar-right" role="search" action="" method="GET">
-                <div class="form-group input-group">
-                    <input type="hidden" name="controller" value="muon-sach">
-                    <input type="text" class="form-control" name="key" placeholder="Search..">
-                    <span class="input-group-btn">
-				            	<button class="btn btn-default" type="submit">
-				              		<span class="glyphicon glyphicon-search"></span>
-				            	</button>
-			          		</span>
+        <!-- RIGHTSIDE header -->
+        <div class="rightside-header">
+            <div class="header-middle"></div>
+            <!--SEARCH HEADERBOX-->
+            <div class="header-section" id="search-headerbox">
+                <input type="text" name="search" id="search" placeholder="Search...">
+                <i class="fa fa-search search" id="search-icon" aria-hidden="true"></i>
+                <div class="header-separator"></div>
+            </div>
+            <div class="header-section" id="user-headerbox">
+                <div class="user-header-wrap">
+                    <div class="user-photo">
+                        <?php
+                            // $file_name = $dataStudents['pathOfAvatar'];
+                            $file_name = 'avatar_user.jpg';
+                            //                            echo '<img alt="profile photo" src="../manage_Library/image/' . $file_name . '">';
+
+                            echo '<img alt="profile photo" src="View/images/avatar/' . $file_name . '" />';
+                        ?>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name"><?php echo $_SESSION['user']; ?></span>
+                        <?php if ($_SESSION['level'] == 1) { ?>
+                            <span class="user-profile">Admin</span>
+                        <?php } else { ?>
+                            <span class="user-profile">User</span>
+                        <?php } ?>
+                    </div>
+                    <i class="fa fa-plus icon-open" aria-hidden="true"></i>
+                    <i class="fa fa-minus icon-close" aria-hidden="true"></i>
                 </div>
-                <input type="hidden" name="action" value="search">
-            </form>
-            <!-- 	</div> -->
-
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Hello <?php echo $_SESSION['user']; ?>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?controller=thuvien-sach&action=listSach">Add
-                                Category</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?controller=thuvien-sach&action=listSach">Manage
-                                Categories</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown"><a class="dropdown-toggle" href="index.php?controller=students&action=studentBorrowBook">Sách đã mượn<span class="caret"></span></a>
-                </li>
-            </ul>
+                <div class="user-options dropdown-box">
+                    <div class="drop-content basic">
+                        <ul>
+                            <li><a href="index.php?controller=students&action=studentInfo"><i class="fa fa-user"
+                                                                                              aria-hidden="true"></i>
+                                    Profile</a></li>
+                            <li><a href="index.php?controller=muon-sach&action=changepass"><i class="fa fa-cog"
+                                                                                              aria-hidden="true"></i>Đổi
+                                    mật khẩu</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="header-separator"></div>
+            <!--Log out -->
+            <div class="header-section">
+                <a href="index.php?controller=muon-sach&action=logout" data-toggle="tooltip" data-placement="left"
+                   title="Logout"><i class="fa fa-sign-out log-out" aria-hidden="true"></i></a>
+            </div>
         </div>
     </div>
-</nav>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3 well text-center">
-            <div class="well">
-                <p><a href="#">My Profile</a></p>
-                <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+    <!-- page BODY -->
+    <!-- ========================================================= -->
+    <div class="page-body">
+        <!-- LEFT SIDEBAR -->
+        <!-- ========================================================= -->
+        <div class="left-sidebar">
+            <!-- left sidebar HEADER -->
+            <div class="left-sidebar-header">
+                <div class="left-sidebar-title">Navigation</div>
+                <div class="left-sidebar-toggle c-hamburger c-hamburger--htla hidden-xs"
+                     data-toggle-class="left-sidebar-collapsed" data-target="html">
+                    <span></span>
+                </div>
             </div>
-            <div class="well">
-                <p><a href="#">Interests</a></p>
-                <p>
-                    <span class="label label-default">News</span>
-                    <span class="label label-primary">W3Schools</span>
-                    <span class="label label-success">Labels</span>
-                    <span class="label label-info">Football</span>
-                    <span class="label label-warning">Gaming</span>
-                    <span class="label label-danger">Friends</span>
-                </p>
-            </div>
-            <div class="alert alert-success fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                <p><strong>Ey!</strong></p>
-                People are looking at your profile. Find out who.
-            </div>
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
-        </div>
+            <!-- NAVIGATION -->
+            <!-- ========================================================= -->
+            <div id="left-nav" class="nano">
+                <div class="nano-content">
+                    <nav>
+                        <ul class="nav nav-left-lines" id="main-nav">
+                            <!--HOME-->
+                            <li class="active-item"><a href="index.php?controller=muon-sach&action=list"><i
+                                            class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
+                            <!--UI ELEMENTENTS-->
 
-        <!-- <div class="list"> -->
-        <div class="col-sm-7">
+                            <li class="has-child-item close-item">
 
-            <div class="row">
+                                <a><i class="fa fa-book" aria-hidden="true"></i><span>Mượn sách</span></a>
+                                <ul class="nav child-nav level-1">
+                                    <?php if (isset($_SESSION['level'])) {
+                                        if ($_SESSION['level'] == 1) {
+                                            ?>
+                                            <li><a href="index.php?controller=muon-sach&action=add">Đăng kí mượn
+                                                    sách</a></li>
+                                            <li><a href="index.php?controller=muon-sach&action=list">Danh sách mượn
+                                                    sách</a>
+                                            </li>
+                                        <?php } else{ ?>
+                                            <li><a href="index.php?controller=students&action=studentBorrowBook">
+                                                    Sách đã mượn</a>
+                                            </li>
+                                        <?php }
+                                    } ?>
+                                </ul>
+                            </li>
 
-                <div class="col-md-9 col-md-offset-1">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            My Profile
-                        </div>
-                        <div class="panel-body">
-                            <form name="" method="post">
-                                <div class="thumbnail" style="width: 200px;">
-
-                                    <?php
-                                        // $file_name = $dataStudents['pathOfAvatar'];
-                                        $file_name = 'Screenshot (15).png';
-                                        echo '<img src="../manage_Library/image/' . $file_name . '">';
+                            <li class="has-child-item close-item">
+                                <a><i class="fa fa-columns" aria-hidden="true"></i><span>Thư viện sách</span></a>
+                                <ul class="nav child-nav level-1">
+                                    <li><a href="index.php?controller=thuvien-sach&action=listSach">Danh sách</a></li>
+                                    <?php if (isset($_SESSION['level'])) {
+                                        if ($_SESSION['level'] == 1) {
+                                            ?>
+                                            <li><a href="index.php?controller=thuvien-sach&action=addBook">Thêm sách</a>
+                                            </li>
+                                        <?php }
+                                    } ?>
+                                </ul>
+                            </li>
+                            <?php if (isset($_SESSION['level'])) {
+                                if ($_SESSION['level'] == 1) {
                                     ?>
-                                </div>
+                                    <li><a href="index.php?controller=accounts&action=listAccount"><i class="fa fa-user"
+                                                                                                      aria-hidden="true"></i><span>Danh sách người dùng</span></a>
+                                    </li>
+                                <?php }
+                            } ?>
+                            <!--TABLES-->
+                            <li class="has-child-item close-item">
+                                <a><i class="fa fa-table" aria-hidden="true"></i><span>Yêu cầu mượn sách</span></a>
+                                <ul class="nav child-nav level-1">
+                                    <?php if (isset($_SESSION['level'])) {
+                                        if ($_SESSION['level'] == 1) {
+                                            ?>
+                                            <li><a href="index.php?controller=requests&action=view-request">Xem yêu
+                                                    cầu</a></li>
+                                        <?php } else { ?>
+                                            <li><a href="index.php?controller=requests&action=send-request">Yêu cầu mượn
+                                                    sách</a></li>
+                                        <?php }
+                                    } ?>
 
-                                <div class="form-group">
-                                    <label>Student ID : </label>
-                                    <?php echo htmlentities($dataStudents['studentID']); ?>
+                                </ul>
+                            </li>
 
-                                </div>
-                                <div class="form-group">
-                                    <label>FullName: </label>
-                                    <?php echo htmlentities($dataStudents['name']); ?>
-                                </div>
-                                <div class="form-group">
-                                    <label>Class: </label>
-                                    <?php echo htmlentities($dataStudents['class']); ?>
-                                </div>
+                            <!--WIDGETS-->
+                            <li class="has-child-item close-item">
+                                <a><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Widgets</span></a>
+                                <ul class="nav child-nav level-1">
+                                    <li><a href="widgets_boxes.html">Boxes</a></li>
+                                    <li><a href="widgets_lists.html">Lists</a></li>
+                                    <li><a href="widgets_posts.html">Posts</a></li>
+                                    <li><a href="widgets_timelines.html">Timelines</a></li>
+                                </ul>
+                            </li>
 
-                                <div class="form-group">
-                                    <label>Birthday: </label>
-                                    <?php echo htmlentities($dataStudents['dateOfBirth']); ?>
-                                </div>
-                                <div class="form-group">
-                                    <label>Profile Status : </label>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- CONTENT-->
+        <div class="content">
+            <!-- content HEADER -->
+            <!-- ========================================================= -->
+            <div class="content-header">
+                <!-- leftside content header -->
+                <div class="leftside-content-header">
+                    <ul class="breadcrumbs">
+                        <li><i class="fa fa-user" aria-hidden="true"></i><a>Trang cá nhân</a></li>
+                        <!--                        <li><a>User profile</a></li>-->
+                    </ul>
+                </div>
+            </div>
+            <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                    <!--PROFILE-->
+                    <div>
+                        <div class="profile-photo">
+                            <?php
+                                // $file_name = $dataStudents['pathOfAvatar'];
+                                $pathToAvatar = 'avatar_user.jpg';
+                                //                                echo '<img src="../manage_Library/image/' . $file_name . '">';
+                                echo  '<img alt="User photo" src="View/images/avatar/'.$pathToAvatar.'" />';
+                            ?>
 
-                                    <span style="color: green">Active</span>
-
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label>phoneNumber: </label>
-                                    <?php echo "0".htmlentities($dataStudents['phoneNumber']); ?>
-                                </div>
-                                <div class="form-group">
-                                    <label>Email: </label>
-                                    <?php echo htmlentities($dataStudents['email']); ?>
-                                </div>
-                                <div class="form-group">
-                                    <label>Address: </label>
-                                    <?php echo htmlentities($dataStudents['address']); ?>
-                                </div>
-
-
-                                <a href="index.php?controller=students&action=studentUpdate"><button class="btn btn-primary" type="button"> Update Now </button></a>
-
-
-                            </form>
+                        </div>
+                        <div class="user-header-info">
+                            <h2 class="user-name"> <?php echo htmlentities($dataStudents['name']); ?></h2>
+                            <?php if ($_SESSION['level'] != 1){ ?>
+                            <h5 class="user-position"> <?php echo htmlentities($dataStudents['studentID']); ?></h5>
+                            <?php } else{ ?>
+                            <h5 class="user-position"> Admin</h5>
+                            <?php }?>
+                            <!--                            <div class="user-social-media">-->
+                            <!--                                <span class="text-lg"><a href="#" class="fa fa-twitter-square"></a> <a href="#" class="fa fa-facebook-square"></a> <a href="#" class="fa fa-linkedin-square"></a> <a href="#" class="fa fa-google-plus-square"></a></span>-->
+                            <!--                            </div>-->
+                        </div>
+                    </div>
+                    <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                    <!--CONTACT INFO-->
+                    <div class="panel bg-scale-0 b-primary bt-sm mt-xl">
+                        <div class="panel-content">
+                            <h4 class=""><b>Thông tin liên hệ</b></h4>
+                            <ul class="user-contact-info ph-sm">
+                                <li><b><i class="color-primary mr-sm fa fa-birthday-cake"></i></b> <?php echo htmlentities($dataStudents['dateOfBirth']); ?></li>
+                                <li><b><i class="color-primary mr-sm fa fa-envelope"></i></b> <?php echo htmlentities($dataStudents['email']); ?></li>
+                                <li><b><i class="color-primary mr-sm fa fa-group"></i></b> <?php echo htmlentities($dataStudents['class']); ?></li>
+                                <li><b><i class="color-primary mr-sm fa fa-phone"></i></b> <?php echo "0".htmlentities($dataStudents['phoneNumber']); ?></li>
+                                <li><b><i class="color-primary mr-sm fa fa-globe"></i></b> <?php echo htmlentities($dataStudents['address']); ?></li>
+                                <!--                                <li class="mt-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolorem error itaque maxime minus saepe similique voluptatibus. Beatae cumque dolore doloribus impedit omnis porro tempore tenetur. Aperiam dolorum odio quo?</li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                    <!--LIST-->
+                    <div class="panel  b-primary bt-sm ">
+                        <div class="panel-content">
+                            <div class="widget-list list-sm list-left-element ">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><i class="fa fa-check color-success"></i></div>
+                                            <div class="text">
+                                                <span class="title">95 Jobs</span>
+                                                <span class="subtitle">Completed</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><i class="fa fa-clock-o color-warning"></i></div>
+                                            <div class="text">
+                                                <span class="title">3 Proyects</span>
+                                                <span class="subtitle">working on</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><i class="fa fa-envelope color-primary"></i></div>
+                                            <div class="text">
+                                                <span class="title">Leave a Menssage</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-8">
+                    <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                    <!--TIMELINE-->
+                    <div class="timeline animated fadeInUp">
+                        <div class="timeline-box">
+                            <div class="timeline-icon bg-primary">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4 class="tl-title">Ello impedit iusto</h4> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
+                            </div>
+                            <div class="timeline-footer">
+                                <span>Today. 14:25</span>
+                            </div>
+                        </div>
+                        <div class="timeline-box">
+                            <div class="timeline-icon bg-primary">
+                                <i class="fa fa-tasks"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4 class="tl-title">consectetur adipisicing </h4> Lorem ipsum dolor sit amet. Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
+                            </div>
+                            <div class="timeline-footer">
+                                <span>Today. 10:55</span>
+                            </div>
+                        </div>
+                        <div class="timeline-box">
+                            <div class="timeline-icon bg-primary">
+                                <i class="fa fa-file"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4 class="tl-title">Impedit iusto minima nisi</h4> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
+                            </div>
+                            <div class="timeline-footer">
+                                <span>Today. 9:20</span>
+                            </div>
+                        </div>
+                        <div class="timeline-box">
+                            <div class="timeline-icon bg-primary">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4 class="tl-title">Lorem ipsum dolor sit</h4> Lorem ipsum dolor sit amet Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
+                            </div>
+                            <div class="timeline-footer">
+                                <span>Yesteday. 16:30</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                    <!--GALLERY-->
+                    <div class=" gallery-wrap">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name']?>">
+                                    <img alt="first photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name']?>">
+                                    <img alt="second photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name']?>">
+                                    <img alt="third photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name']?>">
+                                    <img alt="fourth photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name']?>">
+                                    <img alt="fifth photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name']?>">
+                                    <img alt="sixth photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name']?>">
+                                    <img alt="seventh photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name']?>">
+                                    <img alt="eighth photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
             </div>
-
-
+            <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
         </div>
+        <!-- RIGHT SIDEBAR -->
+        <!-- ========================================================= -->
+        <div class="right-sidebar">
+            <div class="right-sidebar-toggle" data-toggle-class="right-sidebar-opened" data-target="html">
+                <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+            </div>
+            <div id="right-nav" class="nano">
+                <div class="nano-content">
+                    <div class="template-settings">
+                        <h4 class="text-center">Template Settings</h4>
+                        <ul class="toggle-settings pv-xlg">
+                            <li>
+                                <h6 class="text">Header fixed</h6>
+                                <label class="switch">
+                                    <input id="header-fixed" type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <h6 class="text">Content header fixed</h6>
+                                <label class="switch">
+                                    <input id="content-header-fixed" type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <h6 class="text">Left sidebar collapsed</h6>
+                                <label class="switch">
+                                    <input id="left-sidebar-collapsed" type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <h6 class="text">Left sidebar Top</h6>
+                                <label class="switch">
+                                    <input id="left-sidebar-top" type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <h6 class="text">Left sidebar fixed</h6>
+                                <label class="switch">
+                                    <input id="left-sidebar-fixed" type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <h6 class="text">Left sidebar over</h6>
+                                <label class="switch">
+                                    <input id="left-sidebar-over" type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <h6 class="text">Left sidebar nav left-lines</h6>
+                                <label class="switch">
+                                    <input id="left-sidebar-left-lines" type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                        </ul>
+                        <h4 class="text-center">Template Colors</h4>
 
-        <div class="col-sm-2 well text-center">
-            <div class="thumbnail">
-                <p>Upcoming Events:</p>
-                <img src="paris.jpg" alt="Paris" width="400" height="300">
-                <p><strong>Paris</strong></p>
-                <p>Fri. 27 November 2015</p>
-                <button class="btn btn-primary">Info</button>
-            </div>
-            <div class="well">
-                <p>ADS</p>
-            </div>
-            <div class="well">
-                <p>ADS</p>
+                        <div class="row toggle-colors">
+                            <div class="col-xs-6">
+                                <a href="index.html" class="on-click"> <img alt="Helsinki-green"
+                                                                            src="View/images/theme/dark_green.png"/></a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="http://myiideveloper.com/helsinki/last-version/helsinki_green-light/src/index.html"
+                                   class="on-click"> <img alt="Helsinki-green" src="View/images/theme/white_green.png"/></a>
+                            </div>
+                        </div>
+                        <div class="row toggle-colors">
+                            <div class="col-xs-6">
+                                <a href="http://myiideveloper.com/helsinki/last-version/helsinki_dark/src/index.html"
+                                   class="on-click"> <img alt="Helsinki-green" src="View/images/theme/dark_white.png"/></a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="http://myiideveloper.com/helsinki/last-version/helsinki_light/src/index.html"
+                                   class="on-click"> <img alt="Helsinki-green" src="View/images/theme/white_dark.png"/></a>
+                            </div>
+                        </div>
+                        <div class="row toggle-colors">
+                            <div class="col-xs-6">
+                                <a href="http://myiideveloper.com/helsinki/last-version/helsinki_blue-dark/src/index.html"
+                                   class="on-click"> <img alt="Helsinki-green"
+                                                          src="View/images/theme/dark_blue.png"/></a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="http://myiideveloper.com/helsinki/last-version/helsinki_blue-light/src/index.html"
+                                   class="on-click"> <img alt="Helsinki-green" src="View/images/theme/white_blue.png"/></a>
+                            </div>
+                        </div>
+                        <div class="row mt-lg">
+                            <div class="col-sm-12 text-center">
+                                <a target="_blank"
+                                   href="http://myiideveloper.com/helsinki/last-version/documentation/index.html"><h5><i
+                                                class="fa fa-book mr-sm"></i>Online Documentation</h5></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <!--        scroll to top-->
+        <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
     </div>
 </div>
 
-<footer class="container-fluid text-center">
-    <p>Footer Text</p>
-</footer>
 
 </body>
+
 </html>

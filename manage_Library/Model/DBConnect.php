@@ -223,7 +223,7 @@
             return $data;
         }
         public function getDataAccounts($table1,$table2){
-		    $sql = "SELECT T1.studentID, T1.name, T1.class, T1.username, T1.phoneNumber FROM $table1 T1  INNER JOIN $table2 T2 ON T1.username = T2.user";
+		    $sql = "SELECT T1.studentID, T1.name, T1.class, T1.username, T1.phoneNumber FROM $table1 T1  INNER JOIN $table2 T2 ON T1.username = T2.user WHERE T2.level = 0";
             $this->execute($sql);
             if ($this->num_rows() == 0) {
                 $data = 0;

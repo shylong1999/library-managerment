@@ -163,7 +163,7 @@
                                             <li><a href="index.php?controller=requests&action=view-request">Xem yêu
                                                     cầu</a></li>
                                         <?php } else { ?>
-                                            <li><a href="index.php?controller=requests&action=view-request">Yêu cầu mượn
+                                            <li><a href="index.php?controller=requests&action=send-request">Yêu cầu mượn
                                                     sách</a></li>
                                         <?php }
                                     } ?>

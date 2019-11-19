@@ -118,10 +118,10 @@
                                     <label>FullName: </label>
                                     <?php echo htmlentities($dataStudents['name']); ?>
                                 </div>
-                                <div class="form-group">
-                                    <label>Class: </label>
-                                    <?php echo htmlentities($dataStudents['class']); ?>
-                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label>Class: </label>-->
+<!--                                    --><?php //echo htmlentities($dataStudents['class']); ?>
+<!--                                </div>-->
 
                                 <div class="form-group">
                                     <label>Birthday: </label>
@@ -135,6 +135,14 @@
 
                                 </div>
 
+
+                                <div class="form-group">
+                                    <label>Class :</label>
+                                    <input class="form-control" type="text" name=""
+                                           maxlength="11"
+                                           value="<?php echo htmlentities($dataStudents['class']); ?>"
+                                           autocomplete="off" required/>
+                                </div>
 
                                 <div class="form-group">
                                     <label>Mobile Number :</label>

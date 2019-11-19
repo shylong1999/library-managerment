@@ -5,11 +5,7 @@
     if (!isset($_SESSION['user'])) {
         header('Location: index.php?controller=muon-sach&action=login');
     }
-    if (isset($_SESSION['level'])) {
-        if ($_SESSION['level'] != 1) {
-            header('Location: index.php?controller=muon-sach&action=view');
-        }
-    }
+
 ?>
 <html lang="en" class="fixed left-sidebar-top">
 <head>
@@ -162,7 +158,7 @@
                                             <li><a href="index.php?controller=requests&action=view-request">Xem yêu
                                                     cầu</a></li>
                                         <?php } else { ?>
-                                            <li><a href="index.php?controller=requests&action=view-request">Yêu cầu mượn
+                                            <li><a href="index.php?controller=requests&action=send-request">Yêu cầu mượn
                                                     sách</a></li>
                                         <?php }
                                     } ?>
