@@ -41,10 +41,12 @@
                 <div class="user-header-wrap">
                     <div class="user-photo">
                         <?php
-                            // $file_name = $dataStudents['pathOfAvatar'];
-                            $file_name = 'avatar_user.jpg';
-                            //                            echo '<img alt="profile photo" src="../manage_Library/image/' . $file_name . '">';
-
+                            if ($dataStudents['pathOfAvatar'] == ''){
+                                $file_name = 'avatar_user.jpg';
+                            }
+                            else{
+                                $file_name = $dataStudents['pathOfAvatar'];
+                            }
                             echo '<img alt="profile photo" src="View/images/avatar/' . $file_name . '" />';
                         ?>
                     </div>
@@ -202,10 +204,16 @@
                     <div>
                         <div class="profile-photo">
                             <?php
-                                // $file_name = $dataStudents['pathOfAvatar'];
-                                $pathToAvatar = 'avatar_user.jpg';
-                                //                                echo '<img src="../manage_Library/image/' . $file_name . '">';
-                                echo  '<img alt="User photo" src="View/images/avatar/'.$pathToAvatar.'" />';
+                               if ($dataStudents['pathOfAvatar'] == ''){
+                                   $pathToAvatar = 'avatar_user.jpg';
+                               }
+                               else{
+                                   $pathToAvatar = $dataStudents['pathOfAvatar'];
+                               }
+//                                echo  '<img alt="User photo" src="View/images/avatar/'.$pathToAvatar.'" />';
+                                echo '<a  href="../manage_Library/View/images/avatar/' . $pathToAvatar . '">
+                                <img alt="User photo" src="View/images/avatar/'.$pathToAvatar.'" />
+                            </a>'
                             ?>
 
                         </div>
@@ -225,11 +233,13 @@
                     <!--CONTACT INFO-->
                     <div class="panel bg-scale-0 b-primary bt-sm mt-xl">
                         <div class="panel-content">
-                            <h4 class=""><b>Thông tin liên hệ</b></h4>
+                            <h4 class=""><b>Thông tin liên hệ</b> <a href="index.php?controller=students&action=studentUpdate"><i class="color-primary mr-sm fa fa-edit"></i></a></h4>
+
+
                             <ul class="user-contact-info ph-sm">
+                                <li><b><i class="color-primary mr-sm fa fa-group"></i></b> <?php echo htmlentities($dataStudents['class']); ?></li>
                                 <li><b><i class="color-primary mr-sm fa fa-birthday-cake"></i></b> <?php echo htmlentities($dataStudents['dateOfBirth']); ?></li>
                                 <li><b><i class="color-primary mr-sm fa fa-envelope"></i></b> <?php echo htmlentities($dataStudents['email']); ?></li>
-                                <li><b><i class="color-primary mr-sm fa fa-group"></i></b> <?php echo htmlentities($dataStudents['class']); ?></li>
                                 <li><b><i class="color-primary mr-sm fa fa-phone"></i></b> <?php echo "0".htmlentities($dataStudents['phoneNumber']); ?></li>
                                 <li><b><i class="color-primary mr-sm fa fa-globe"></i></b> <?php echo htmlentities($dataStudents['address']); ?></li>
                                 <!--                                <li class="mt-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolorem error itaque maxime minus saepe similique voluptatibus. Beatae cumque dolore doloribus impedit omnis porro tempore tenetur. Aperiam dolorum odio quo?</li>-->

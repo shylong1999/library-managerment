@@ -14,6 +14,9 @@
             $tblTable1 = "student";
             $tblTable2 = "request";
             $dataRequest = $db->getDataRequests($tblTable1,$tblTable2);
+            $tblStudent = 'student';
+            $username = $_SESSION['user'];
+            $dataStudents = $db->getDataStudents($tblStudent, $username);
             require_once('View/request/viewRequest.php');
             break;
         case 'send-request':
@@ -27,6 +30,9 @@
                     $success[] = 'send_success';
                 }
             }
+            $tblStudent = 'student';
+            $username = $_SESSION['user'];
+            $dataStudents = $db->getDataStudents($tblStudent, $username);
             require_once('View/request/sendRequest.php');
             break;
         case 'delete-request':

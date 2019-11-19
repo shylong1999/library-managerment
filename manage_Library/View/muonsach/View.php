@@ -5,11 +5,6 @@
     if (!isset($_SESSION['user'])) {
         header('Location: index.php?controller=muon-sach&action=login');
     }
-    if (isset($_SESSION['level'])){
-        if ($_SESSION['level'] != 1){
-            header('Location: index.php?controller=muon-sach&action=view');
-        }
-    }
 ?>
 <html lang="en" class="fixed left-sidebar-top">
 <head>
@@ -47,7 +42,7 @@
                     <div class="user-photo">
                         <?php
                             // $file_name = $dataStudents['pathOfAvatar'];
-                            $file_name = 'avatar_user.jpg';
+                            $file_name = $dataStudents['pathOfAvatar'];;;
                             //                            echo '<img alt="profile photo" src="../manage_Library/image/' . $file_name . '">';
 
                             echo '<img alt="profile photo" src="View/images/avatar/' . $file_name . '" />';
@@ -122,7 +117,7 @@
                                             <li><a href="index.php?controller=muon-sach&action=list">Danh sách mượn
                                                     sách</a>
                                             </li>
-                                        <?php } else{ ?>
+                                        <?php } else { ?>
                                             <li><a href="index.php?controller=students&action=studentBorrowBook">
                                                     Sách đã mượn</a>
                                             </li>
@@ -162,7 +157,7 @@
                                             <li><a href="index.php?controller=requests&action=view-request">Xem yêu
                                                     cầu</a></li>
                                         <?php } else { ?>
-                                            <li><a href="index.php?controller=requests&action=view-request">Yêu cầu mượn
+                                            <li><a href="index.php?controller=requests&action=send-request">Yêu cầu mượn
                                                     sách</a></li>
                                         <?php }
                                     } ?>
@@ -194,48 +189,237 @@
                 <!-- leftside content header -->
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
-                        <li><i class="fa fa-paper-plane" aria-hidden="true"></i><a href="#">Thư viện sách</a></li>
-                        <li><a>Danh sách</a></li>
+                        <li><i class="fa fa-user" aria-hidden="true"></i><a>Trang cá nhân</a></li>
+                        <!--                        <li><a>User profile</a></li>-->
                     </ul>
                 </div>
             </div>
             <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-            <div class="row animated fadeInUp">
-                <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-                <!--WIDGET POST TYPE 1-->
-                <?php foreach ($data_Sach as $value) {?>
-                <div class="col-sm-6 col-md-3">
-                    <!--Post type 1-->
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                    <!--PROFILE-->
+                    <div>
+                        <div class="profile-photo">
+                            <form method="post" action="" enctype="multipart/form-data">
+                                <div class="image-upload-wrap">
+                                    <input name="Avatar" class="file-upload-input" type='file' onchange="readURL(this);"
+                                           accept="image/*"/>
+                                    <div class="drag-text">
+                                        <?php
+                                            // $file_name = $dataStudents['pathOfAvatar'];
+                                            $pathToAvatar = $dataStudents['pathOfAvatar'];;
+                                            //                                echo '<img src="../manage_Library/image/' . $file_name . '">';
 
-                    <div class="panel widget-post ">
-                        <div class="panel-header">
-                            <?php
-                                $pathToBook = $value['name'];
-//                            echo '<img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '" />';
-                            echo '<a  href="../manage_Library/View/image/' . $pathToBook . '">
-                                <img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '">
-                            </a>'
-                            ?>
+                                            echo '<img alt="User photo" src="View/images/avatar/' . $pathToAvatar . '" />';
+                                        ?>
 
-<!--                            <img style="height: 20px;">-->
-<!--                            <div class="main-tag"><span>Adventure</span></div>-->
+                                    </div>
+                                </div>
+                                <div class="file-upload-content">
+                                    <img class="file-upload-image" src="#" alt="your image"/>
+                                </div>
+                                <button type="submit" name="submit-avatar">Cập nhật</button>
+                            </form>
                         </div>
+                        <div class="user-header-info">
+                            <h2 class="user-name"> <?php echo htmlentities($dataStudents['name']); ?></h2>
+                            <?php if ($_SESSION['level'] != 1) { ?>
+                                <h5 class="user-position"> <?php echo htmlentities($dataStudents['studentID']); ?></h5>
+                            <?php } else { ?>
+                                <h5 class="user-position"> Admin</h5>
+                            <?php } ?>
+                            <!--                            <div class="user-social-media">-->
+                            <!--                                <span class="text-lg"><a href="#" class="fa fa-twitter-square"></a> <a href="#" class="fa fa-facebook-square"></a> <a href="#" class="fa fa-linkedin-square"></a> <a href="#" class="fa fa-google-plus-square"></a></span>-->
+                            <!--                            </div>-->
+                        </div>
+                    </div>
+                    <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                    <!--CONTACT INFO-->
+                    <div class="panel bg-scale-0 b-primary bt-sm mt-xl">
                         <div class="panel-content">
-                            <div class="text text-center">
-                                <h4><a href="index.php?controller=thuvien-sach&action=infoBook&id=<?php echo $value['id']; ?>"><?php echo $value['tensach']; ?></a></h4>
+                            <h4 class=""><b>Thông tin liên hệ</b></h4>
 
-                                <h6 class="color-muted"><a><?php echo $value['tacgia']; ?></a></h6>
-<!--                                <hr class="mv-xs mh-lg" />-->
-<!--                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, illum iste magni nam quo saepe temporibus</p>-->
+
+                            <form method="post" action="">
+                                <div class="form-group">
+                                    <b><i class="color-primary mr-sm fa fa-group"></i></b><input type="text"
+                                                                                                 name="class"
+                                                                                                 value="<?php echo htmlentities($dataStudents['class']); ?>">
+                                </div>
+                                <div class="form-group">
+                                    <b><i class="color-primary mr-sm fa fa-birthday-cake"></i></b><input type="date"
+                                                                                                         name="dateOfBirth"
+                                                                                                         value="<?php echo htmlentities($dataStudents['dateOfBirth']); ?>">
+
+                                </div>
+                                <div class="form-group">
+                                    <b><i class="color-primary mr-sm fa fa-envelope"></i></b><input type="email"
+                                                                                                    name="email"
+                                                                                                    value="<?php echo htmlentities($dataStudents['email']); ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <b><i class="color-primary mr-sm fa fa-phone"></i></b><input type="text"
+                                                                                                 maxlength="11"
+                                                                                                 name="phoneNumber"
+                                                                                                 value="<?php echo htmlentities($dataStudents['phoneNumber']); ?>">
+                                </div>
+                                <div class="form-group">
+                                    <b><i class="color-primary mr-sm fa fa-globe"></i></b><input type="text"
+                                                                                                 name="address"
+                                                                                                 value="<?php echo htmlentities($dataStudents['address']); ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <button name="submit" type="submit" class="btn btn-success"
+                                            style="margin-left: 50px;">Cập nhật
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                    <!--LIST-->
+                    <div class="panel  b-primary bt-sm ">
+                        <div class="panel-content">
+                            <div class="widget-list list-sm list-left-element ">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><i class="fa fa-check color-success"></i></div>
+                                            <div class="text">
+                                                <span class="title">95 Jobs</span>
+                                                <span class="subtitle">Completed</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><i class="fa fa-clock-o color-warning"></i></div>
+                                            <div class="text">
+                                                <span class="title">3 Proyects</span>
+                                                <span class="subtitle">working on</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><i class="fa fa-envelope color-primary"></i></div>
+                                            <div class="text">
+                                                <span class="title">Leave a Menssage</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-<!--                        <div class="panel-footer bg-scale-0 text-center pv-xs"><a href="#">Read more</a></div>-->
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-8">
+                    <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                    <!--TIMELINE-->
+                    <div class="timeline animated fadeInUp">
+                        <div class="timeline-box">
+                            <div class="timeline-icon bg-primary">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4 class="tl-title">Ello impedit iusto</h4> Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
+                            </div>
+                            <div class="timeline-footer">
+                                <span>Today. 14:25</span>
+                            </div>
+                        </div>
+                        <div class="timeline-box">
+                            <div class="timeline-icon bg-primary">
+                                <i class="fa fa-tasks"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4 class="tl-title">consectetur adipisicing </h4> Lorem ipsum dolor sit amet.
+                                Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
+                            </div>
+                            <div class="timeline-footer">
+                                <span>Today. 10:55</span>
+                            </div>
+                        </div>
+                        <div class="timeline-box">
+                            <div class="timeline-icon bg-primary">
+                                <i class="fa fa-file"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4 class="tl-title">Impedit iusto minima nisi</h4> Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Consequatur distinctio illo impedit iusto minima nisi quo
+                                tempora ut!
+                            </div>
+                            <div class="timeline-footer">
+                                <span>Today. 9:20</span>
+                            </div>
+                        </div>
+                        <div class="timeline-box">
+                            <div class="timeline-icon bg-primary">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4 class="tl-title">Lorem ipsum dolor sit</h4> Lorem ipsum dolor sit amet Consequatur
+                                distinctio illo impedit iusto minima nisi quo tempora ut!
+                            </div>
+                            <div class="timeline-footer">
+                                <span>Yesteday. 16:30</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                    <!--GALLERY-->
+                    <div class=" gallery-wrap">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name'] ?>">
+                                    <img alt="first photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name'] ?>">
+                                    <img alt="second photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name'] ?>">
+                                    <img alt="third photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name'] ?>">
+                                    <img alt="fourth photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name'] ?>">
+                                    <img alt="fifth photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name'] ?>">
+                                    <img alt="sixth photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name'] ?>">
+                                    <img alt="seventh photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="View/images/helsinki-lg.jpg" title="By <?php echo $dataStudents['name'] ?>">
+                                    <img alt="eighth photo" src="View/images/helsinki.jpg" class="img-responsive">
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
-                <?php } ?>
             </div>
-
             <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
         </div>
         <!-- RIGHT SIDEBAR -->
@@ -349,6 +533,50 @@
 </div>
 
 
-</body>
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.name == "Avatar" && input.files && input.files[0]) {
 
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.image-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        }
+    }
+</script>
+</body>
+<style>
+    .file-upload-content {
+        display: none;
+        text-align: center;
+    }
+
+    .file-upload-input {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .image-upload-wrap {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin-top: 20px;
+        position: relative;
+        background-color: #e9ebee;
+    }
+</style>
 </html>

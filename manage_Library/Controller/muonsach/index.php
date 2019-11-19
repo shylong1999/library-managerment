@@ -25,6 +25,9 @@
 					$success[] = 'add_success';
 				}
 			}
+            $tblStudent = 'student';
+            $username = $_SESSION['user'];
+            $dataStudents = $db->getDataStudents($tblStudent, $username);
 			require_once('View/muonsach/add_info.php');
 			break;
 		}
@@ -47,6 +50,9 @@
 					}
 				}
 			}
+            $tblStudent = 'student';
+            $username = $_SESSION['user'];
+            $dataStudents = $db->getDataStudents($tblStudent, $username);
 			require_once('View/muonsach/edit_info.php');
 			break;
 
@@ -63,6 +69,9 @@
 		case 'list':
 			$tblTable = 'muonsach';
 			$data = $db->getAllData($tblTable);
+            $tblStudent = 'student';
+            $username = $_SESSION['user'];
+            $dataStudents = $db->getDataStudents($tblStudent, $username);
 			require_once('View/muonsach/list.php');
 			break;
 		case 'search':
@@ -108,21 +117,33 @@
 				$oldpass = md5($_POST['oldpass']);
 				$newpass = md5($_POST['newpass']);
 				$newpass_verify = md5($_POST['newpass_verify']);
+				$dataPassword = $db->getPasswordUser($tblTable, $user); // lấy mật khẩu của user hiện tại
 				$count_User = $db->getCountAcc($tblTable,$user,$oldpass);
 				// print_r(count_User);die("xxx");
 				if ($newpass != $newpass_verify) {
-					$thatbai[] = 'change_lose';
-				} else{
+					$success[] = 'change_lose';
+				}
+				elseif ($oldpass == $newpass){
+                    $success[] = 'change_lose';
+                }
+				elseif ($oldpass != $dataPassword[0]['pass']){
+                    $success[] = 'change_lose';
+                }
+                else{
 					if ($count_User >= 1) {
-						if ($db->updatePassword($tblTable,$user,$newpass)) {
-							$success[] = 'change_success';
-						}
-					} else {
-						die('khong hop le:'.$oldpass);
-					}
+                        if ($db->updatePassword($tblTable, $user, $newpass)) {
+                            $success[] = 'change_success';
+                        }
+                    }
+//					} else {
+//						die('khong hop le:'.$oldpass);
+//					}
 				}
 				
 			}
+            $tblStudent = 'student';
+            $username = $_SESSION['user'];
+            $dataStudents = $db->getDataStudents($tblStudent, $username);
 			require_once('View/dangnhap/changePassword.php');
 			break;
 
@@ -169,6 +190,7 @@
 			require_once('View/dangnhap/dangky.php');
 			break;
         case 'view':
+
             $tblTable1 = "student";
             $tblTable2 = "request";
             $dataRequest = $db->getDataRequests($tblTable1,$tblTable2);
@@ -187,6 +209,33 @@
             $data_Sach = $db->getAllData($tblTable11);
             $tableAccount = 'thanhvien';
             $totalAccount = $db->getTotalAccount($tableAccount);
+
+            if (isset($_FILES['Avatar'])){
+                $tb = 'student';
+                $user = $_SESSION['user'];
+                    $file_avatar = $_FILES['Avatar']['name'];
+                    $file_tmp = $_FILES['Avatar']['tmp_name'];
+                    $extensions = array("jpeg","jpg","png");
+                    move_uploaded_file($file_tmp,"C:/xampp/htdocs/quanlythuvien/manage_Library/View/images/avatar/$file_avatar" );
+                    if (isset($_POST['submit-avatar'])){
+                        $db->updateAvatar($tb,$user,$file_avatar);
+                        header('location: index.php?controller=students&action=studentInfo');
+                    }
+                if (isset($_POST['submit'])) {
+                    $class = $_POST['class'];
+                    $dateOfBirth = $_POST['dateOfBirth'];
+                    $email = $_POST['email'];
+                    $phoneNumber = $_POST['phoneNumber'];
+                    $address = $_POST['address'];
+
+
+
+                    if ($db->updateInfoStudent($tb,$user,$class,$address,$email,$phoneNumber,$dateOfBirth)) {
+                        header('location: index.php?controller=students&action=studentInfo');
+                    }
+                }
+            }
+
             require_once ('View/muonsach/View.php');
 		default:
 			# code...

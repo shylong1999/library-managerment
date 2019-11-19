@@ -165,6 +165,20 @@
 			return $this->execute($sql);
 		}
 
+		public function getPasswordUser($table,$user){
+            $sql = "SELECT pass FROM $table WHERE user ='".$user."'";
+            $this->execute($sql);
+            if ($this->num_rows() == 0) {
+                $data = 0;
+            }
+            else{
+                while ($datas = $this->getData()) {
+                    $data[] = $datas;
+                }
+            }
+            return $data;
+        }
+
 		public function getCountAcc($table,$user,$oldpass)
 		{
 			$sql = "SELECT * FROM $table WHERE user ='".$user."' AND pass = '".$oldpass."'";
@@ -185,6 +199,16 @@
 			$sql = "UPDATE $table SET pass = '".$newpass."' WHERE user = '".$user."'";
 			return $this->execute($sql);
 		}
+		public function updateAvatar($table,$username,$pathOfAvatar){
+            $sql = "UPDATE $table SET pathOfAvatar = '".$pathOfAvatar."' WHERE username = '".$username."'";
+            return $this->execute($sql);
+        }
+        public function updateInfoStudent($table,$user,$class,$address,$email,$phoneNumber,$dateOfBirth)
+        {
+
+            $sql = "UPDATE $table SET class = '".$class."',address = '".$address."',email = '".$email."',phoneNumber = '".$phoneNumber."',dateOfBirth = '".$dateOfBirth."' WHERE username = '".$user."'";
+            return $this->execute($sql);
+        }
 
 		public function insertRequest($table, $username,$message){
 		    $sql = "INSERT INTO $table(requestID,username,message,logs) VALUES (null,'".$username."','".$message."',now())";

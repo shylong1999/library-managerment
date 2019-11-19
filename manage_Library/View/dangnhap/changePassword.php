@@ -42,10 +42,12 @@
                 <div class="user-header-wrap">
                     <div class="user-photo">
                         <?php
-                            // $file_name = $dataStudents['pathOfAvatar'];
-                            $file_name = 'avatar_user.jpg';
-                            //                            echo '<img alt="profile photo" src="../manage_Library/image/' . $file_name . '">';
-
+                            if ($dataStudents['pathOfAvatar'] == ''){
+                                $file_name = 'avatar_user.jpg';
+                            }
+                            else{
+                                $file_name = $dataStudents['pathOfAvatar'];
+                            }
                             echo '<img alt="profile photo" src="View/images/avatar/' . $file_name . '" />';
                         ?>
                     </div>
@@ -243,6 +245,12 @@
                                         if (isset($success) && in_array('change_success', $success)) {
                                             echo "<div class='alert alert-success' style='text-align: center'>
 					<strong>Đổi mật khẩu thành công!</strong> 
+						</div>";
+                                        }
+
+                                        if (isset($success) && in_array('change_lose', $success)) {
+                                            echo "<div class='alert alert-danger' style='text-align: center'>
+					<strong>Đổi mật khẩu không thành công!</strong> 
 						</div>";
                                         }
                                     ?>

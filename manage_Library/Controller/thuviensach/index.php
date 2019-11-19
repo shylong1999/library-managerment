@@ -17,9 +17,6 @@
 				$file_size = $_FILES['fileToUpload']['size'];
 				$file_tmp = $_FILES['fileToUpload']['tmp_name'];
 				$file_type = $_FILES['fileToUpload']['type'];
-
-
-
 				$extensions = array("jpeg","jpg","png");
 				move_uploaded_file($file_tmp,"C:/xampp/htdocs/quanlythuvien/manage_Library/View/image/$file_name" );
 				if (isset($_POST['tensach']) && isset($_POST['tacgia'])) {
@@ -33,6 +30,9 @@
 				// $data_img = $file_name;	
 			}
 
+            $tblStudent = 'student';
+            $username = $_SESSION['user'];
+            $dataStudents = $db->getDataStudents($tblStudent, $username);
 			require_once('View/thuviensach/add_book.php');
 			break;
 
@@ -43,11 +43,17 @@
                 $dataBook = $db->getDataID($table,$id);
             }
 
+            $tblStudent = 'student';
+            $username = $_SESSION['user'];
+            $dataStudents = $db->getDataStudents($tblStudent, $username);
             require_once('View/thuviensach/infoBook.php');
             break;
 		case 'listSach':
 			$tblTable = 'sach';
 			$data_Sach = $db->getAllData($tblTable);
+            $tblStudent = 'student';
+            $username = $_SESSION['user'];
+            $dataStudents = $db->getDataStudents($tblStudent, $username);
 			require_once('View/thuviensach/listsach.php');
 			break;
 		default:

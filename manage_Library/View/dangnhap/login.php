@@ -49,6 +49,13 @@
                             <a href="index.php?controller=muon-sach&action=dangky" class="btn btn-block mt-sm">Đăng ký</a>
                         </div>
                     </form>
+                    <?php
+                        if (isset($thatbai) && in_array('thatbai', $thatbai)) {
+                            echo " <div class='alert alert-danger'>
+					<strong>Tài khoản hoặc mật khẩu không đúng, vui lòng đăng nhập lại!</strong> 
+						</div>";
+                        }
+                    ?>
                 </div>
             </div>
         </div>
