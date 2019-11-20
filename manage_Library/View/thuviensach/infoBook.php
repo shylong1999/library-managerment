@@ -189,8 +189,9 @@
                 <!-- leftside content header -->
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
-                        <li><i class="fa fa-columns" aria-hidden="true"></i><a href="#">Yêu cầu mượn sách</a></li>
-                        <li><a>Yêu cầu</a></li>
+                        <li><i class="fa fa-columns" aria-hidden="true"></i><a href="#">Thư viện sách</a></li>
+                        <li><a>Danh sách</a></li>
+                        <li><a><?php echo $dataBook['tensach'];?></a></li>
                     </ul>
                 </div>
             </div>
@@ -198,16 +199,8 @@
             <div class="row animated fadeInUp">
                 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
                 <!--WIDGET POST TYPE 1-->
-                <div class="col-sm-12 col-md-4 ">
-                    <!--Post type 1-->
-
-
-                    <div class="panel widget-post ">
-                        <div class="panel-header">
-
+                <div class="col-sm-12 col-md-4">
                             <?php
-
-
                                 $pathToBook = $dataBook['name'];
                                 //                            echo '<img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '" />';
                                 echo '<a  href="../manage_Library/View/image/' . $pathToBook . '">
@@ -215,22 +208,10 @@
                             </a>'
                             ?>
 
-                            <!--                            <img style="height: 20px;">-->
-                            <!--                            <div class="main-tag"><span>Adventure</span></div>-->
+                <h4><strong>Tên sách: <?php echo $dataBook['tensach']; ?></strong></h4>
+                    <h4><strong>Tên tác giả: <?php echo $dataBook['tacgia']; ?></strong></h4>
+                        <h4>Mô tả: <?php echo $dataBook['description']; ?></h4>
 
-
-
-
-
-                        </div>
-                        <!--                        <div class="panel-footer bg-scale-0 text-center pv-xs"><a href="#">Read more</a></div>-->
-                    </div>
-
-                    <div>
-                        <h3>- Tên sách: <?php echo $dataBook['tensach']; ?></h3>
-                        <h3>- Tên tác giả: <?php echo $dataBook['tacgia']; ?></h3>
-                       <h3>- Mô tả: <?php echo $dataBook['description']; ?></h3>
-                    </div>
                 </div>
 
                 <!--TIMELINE left-->
