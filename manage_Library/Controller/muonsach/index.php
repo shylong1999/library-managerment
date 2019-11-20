@@ -200,9 +200,12 @@
             $data = $db->getAllData($tblTable);
             $tableRequest = 'request';
             $totalRequest = $db->getTotalRequest($tableRequest);
+            $username = $_SESSION['user'];
+            $tblTable1 = 'student';
+            $borrowedBook = $db->getDataBorrowBook($tblTable1,$tblTable,$username);
 
             $tblTable12 = 'student';
-            $username = $_SESSION['user'];
+
             $dataStudents = $db->getDataStudents($tblTable12, $username);
 
             $tblTable11 = 'sach';

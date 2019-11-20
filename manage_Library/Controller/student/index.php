@@ -53,7 +53,6 @@
             $username = $_SESSION['user'];
             $borrowedBook = $db->getDataBorrowBook($tblTable1,$tblTable2,$username);
             $tblStudent = 'student';
-            $username = $_SESSION['user'];
             $dataStudents = $db->getDataStudents($tblStudent, $username);
             require_once('View/student/getBorrowBook.php');
             break;

@@ -104,8 +104,8 @@
                     <nav>
                         <ul class="nav nav-left-lines" id="main-nav">
                             <!--HOME-->
-                            <li class="active-item"><a href="index.php?controller=muon-sach&action=list"><i
-                                            class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
+                            <li class="active-item"><a href="index.php?controller=thuvien-sach&action=listSach"><i
+                                            class="fa fa-home" aria-hidden="true"></i><span>Home</span></a></li>
                             <!--UI ELEMENTENTS-->
 
                             <li class="has-child-item close-item">
