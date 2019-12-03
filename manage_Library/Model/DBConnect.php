@@ -79,8 +79,21 @@
 		 		}
 		 	}
 		 	return $data;
-		} 
-		public function num_rows()
+		}
+        public function getAllDataList($table){
+            $sql = "SELECT * FROM $table ORDER BY ngaymuon";
+            $this->execute($sql);
+            if ($this->num_rows() == 0) {
+                $data = 0;
+            }
+            else{
+                while ($datas = $this->getData()) {
+                    $data[] = $datas;
+                }
+            }
+            return $data;
+        }
+        public function num_rows()
 		{
 			if ($this->result) {
 				$num = mysqli_num_rows($this->result);

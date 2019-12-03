@@ -32,11 +32,11 @@
         <div class="rightside-header">
             <div class="header-middle"></div>
             <!--SEARCH HEADERBOX-->
-            <div class="header-section" id="search-headerbox">
-                <input type="text" name="search" id="search" placeholder="Search...">
-                <i class="fa fa-search search" id="search-icon" aria-hidden="true"></i>
-                <div class="header-separator"></div>
-            </div>
+<!--            <div class="header-section" id="search-headerbox">-->
+<!--                <input type="text" name="search" id="search" placeholder="Search...">-->
+<!--                <i class="fa fa-search search" id="search-icon" aria-hidden="true"></i>-->
+<!--                <div class="header-separator"></div>-->
+<!--            </div>-->
             <div class="header-section" id="user-headerbox">
                 <div class="user-header-wrap">
                     <div class="user-photo">
@@ -166,15 +166,15 @@
                             </li>
 
                             <!--WIDGETS-->
-                            <li class="has-child-item close-item">
-                                <a><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Widgets</span></a>
-                                <ul class="nav child-nav level-1">
-                                    <li><a href="widgets_boxes.html">Boxes</a></li>
-                                    <li><a href="widgets_lists.html">Lists</a></li>
-                                    <li><a href="widgets_posts.html">Posts</a></li>
-                                    <li><a href="widgets_timelines.html">Timelines</a></li>
-                                </ul>
-                            </li>
+<!--                            <li class="has-child-item close-item">-->
+<!--                                <a><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Widgets</span></a>-->
+<!--                                <ul class="nav child-nav level-1">-->
+<!--                                    <li><a href="widgets_boxes.html">Boxes</a></li>-->
+<!--                                    <li><a href="widgets_lists.html">Lists</a></li>-->
+<!--                                    <li><a href="widgets_posts.html">Posts</a></li>-->
+<!--                                    <li><a href="widgets_timelines.html">Timelines</a></li>-->
+<!--                                </ul>-->
+<!--                            </li>-->
 
                         </ul>
                     </nav>
@@ -222,10 +222,7 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="timeline-content">
-                                <h4 class="tl-title">Ello impedit iusto</h4> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
-                            </div>
-                            <div class="timeline-footer">
-                                <span>Today. 14:25</span>
+                                <h4 class="tl-title">Thông tin liên hệ</h4> Liên hệ theo số điện thoại <a>0969985570</a> để được hỗ trợ!!!
                             </div>
                         </div>
                         <div class="timeline-box">
@@ -233,10 +230,7 @@
                                 <i class="fa fa-tasks"></i>
                             </div>
                             <div class="timeline-content">
-                                <h4 class="tl-title">consectetur adipisicing </h4> Lorem ipsum dolor sit amet. Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
-                            </div>
-                            <div class="timeline-footer">
-                                <span>Today. 10:55</span>
+                                <h4 class="tl-title">Thư viện</h4> Trường Đại học Công nghệ
                             </div>
                         </div>
                         <div class="timeline-box">
@@ -244,10 +238,7 @@
                                 <i class="fa fa-file"></i>
                             </div>
                             <div class="timeline-content">
-                                <h4 class="tl-title">Impedit iusto minima nisi</h4> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
-                            </div>
-                            <div class="timeline-footer">
-                                <span>Today. 9:20</span>
+                                <h4 class="tl-title">Nội quy</h4> Học sinh phải tuân thủ mọi nội quy nhà trường đề ra, phải trả sách trước thời hạn, bảo quản sách chu đáo!
                             </div>
                         </div>
                         <div class="timeline-box">
@@ -255,10 +246,8 @@
                                 <i class="fa fa-check"></i>
                             </div>
                             <div class="timeline-content">
-                                <h4 class="tl-title">Lorem ipsum dolor sit</h4> Lorem ipsum dolor sit amet Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
-                            </div>
-                            <div class="timeline-footer">
-                                <span>Yesteday. 16:30</span>
+                                <h4 class="tl-title">Thời gian mở cửa</h4> Sáng: Từ <a>7h30 - 11h00</a> / Chiều: Từ <a>14h00 - 17h00</a>
+
                             </div>
                         </div>
                     </div>

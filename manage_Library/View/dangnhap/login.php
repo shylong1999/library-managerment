@@ -12,7 +12,7 @@
         <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
         <!--LOGO-->
         <div class="logo">
-            <img alt="logo" src="View/images/logo-dark.png" />
+            <img alt="logo" src="View/images/logo_dark.png" />
         </div>
         <div class="box">
             <!--SIGN IN FORM-->

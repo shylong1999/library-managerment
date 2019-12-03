@@ -22,7 +22,7 @@
         <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
         <!--LOGO-->
         <div class="logo">
-            <img alt="logo" src="View/images/logo-dark.png"/>
+            <img alt="logo" src="View/images/register.png"/>
         </div>
         <div class="box">
             <!--SIGN IN FORM-->
@@ -44,7 +44,7 @@
                         </div>
                         <div class="form-group mt-md">
                             <span class="input-with-icon">
-                                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+                                <input type="text" class="form-control" maxlength="8" id="phoneNumber" name="phoneNumber"
                                        placeholder="Phone Number">
                                 <i class="fa fa-phone"></i>
                             </span>

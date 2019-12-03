@@ -195,93 +195,151 @@
                 </div>
             </div>
             <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-            <div class="row animated fadeInUp">
+
                     <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
                     <!--WIDGET POST TYPE 1-->
-                        <div class="col-sm-6 col-md-3">
-                            <!--Post type 1-->
+                <div class="col-xs-12 col-sm-12 col-md-9 col-md-push-0">
+                    <div class="parts">
+                        <div class="name_part_detail">
+                            <h4>
+                               <?php echo "Tên sách" ?> </h4>
+                        </div>
+                        <div class="book_detail">
+                            <div class="img_book">
 
-                            <div class="panel widget-post ">
-                                <div class="panel-header">
-                                    <?php
-
-
-                                        $pathToBook = $dataBook['name'];
-                                        //                            echo '<img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '" />';
-                                        echo '<a  href="../manage_Library/View/image/' . $pathToBook . '">
-                                <img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '">
+                                    <table>
+                                        <tr>
+                                            <td colspan="2" style="border: #f6f2f2 solid 1px;">
+                                                <?php
+                                                    $pathToBook = "avatar_user.jpg";
+                                                    //                            echo '<img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '" />';
+                                                    echo '<a  href="../manage_Library/View/images/avatar/' . $pathToBook . '">
+                                <img style="height: 300px;" alt="post photo" src="../manage_Library/View/images/avatar/' . $pathToBook . '">
                             </a>'
-                                    ?>
+                                                ?>
+                                            </td>
+                                        </tr>
 
-                                    <!--                            <img style="height: 20px;">-->
-                                    <!--                            <div class="main-tag"><span>Adventure</span></div>-->
-                                </div>
-                                <div class="panel-content">
-                                    <div class="text text-center">
-                                        <h4><a href="index.php?controller=thuvien-sach&action=infoBook&id=<?php echo $value['id']; ?>"><?php echo $value['tensach']; ?></a></h4>
+                                    </table>
+                            </div>
+                            <div class="text_book">
+                                <h5>
+                                    <span>Th</span>
+                                </h5>
+                                <table>
+                                    <tbody>
+                                    <tr id="ContentPlaceHolder1_trEdataType">
+                                        <td class="field_name" nowrap="nowrap">
+                                            Loại tài liệu:
+                                        </td>
+                                        <td>
+                                            <span id="ContentPlaceHolder1_lblEdataType">Book</span>
+                                        </td>
+                                    </tr>
 
-                                        <h6 class="color-muted"><a><?php echo $value['tacgia']; ?></a></h6>
-                                        <!--                                <hr class="mv-xs mh-lg" />-->
-                                        <!--                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, illum iste magni nam quo saepe temporibus</p>-->
-                                    </div>
-                                </div>
-                                <!--                        <div class="panel-footer bg-scale-0 text-center pv-xs"><a href="#">Read more</a></div>-->
-                            </div>
+                                    <tr id="ContentPlaceHolder1_trEdataCode">
+                                        <td class="field_name" nowrap="nowrap">
+                                            Mã tài liệu:
+                                        </td>
+                                        <td>
+                                            <span id="ContentPlaceHolder1_lblEdataCode">82909</span>
+                                        </td>
+                                    </tr>
 
-                        </div>
+                                    <tr id="ContentPlaceHolder1_trLanguage">
+                                        <td class="field_name" nowrap="nowrap">
+                                            Mã ngôn ngữ:
+                                        </td>
+                                        <td>
+                                            <span id="ContentPlaceHolder1_lblLanguage">en</span>
+                                        </td>
+                                    </tr>
 
-                <!--TIMELINE left-->
-                <div class="col-sm-10 col-lg-4 col-md-offset-2">
-                    <div class="timeline">
-                        <div class="timeline-box">
-                            <div class="timeline-icon bg-primary">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="timeline-content">
-                                <h4 class="tl-title">Ello impedit iusto</h4> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
-                            </div>
-                            <div class="timeline-footer">
-                                <span>Today. 14:25</span>
+
+                                    <tr id="ContentPlaceHolder1_trPublisher">
+                                        <td class="field_name" nowrap="nowrap">
+                                            Thông tin xuất bản:
+                                        </td>
+                                        <td>
+
+                                            <span id="ContentPlaceHolder1_lblPublisher">Springer</span>
+
+                                        </td>
+                                    </tr>
+
+
+                                    <tr id="ContentPlaceHolder1_trFormat">
+                                        <td class="field_name" nowrap="nowrap">
+                                            Tình trạng vật lý:
+                                        </td>
+                                        <td>
+                                            <span id="ContentPlaceHolder1_lblFormat">674 p.</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr id="ContentPlaceHolder1_trSubject">
+                                        <td class="field_name" nowrap="nowrap">
+                                            Từ khóa:
+                                        </td>
+                                        <td>
+                                            <span id="ContentPlaceHolder1_lblSubject">Hệ chuyên gia (Tin học) ; Công nghệ thông tin ; Quản lý tri thức ; Xử lý ảnh ; Expert systems (Computer science) -- Congresses. ; Information technology -- Congresses. ; Knowledge management ; Knowledge representation (Information theory) -- Congresses. ;</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr id="ContentPlaceHolder1_trCollection">
+                                        <td class="field_name" nowrap="nowrap">
+                                            Danh mục:
+                                        </td>
+                                        <td>
+                                            <span id="ContentPlaceHolder1_lblCollection">Khoa học & Công nghệ thông tin</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr id="ContentPlaceHolder1_trCourse">
+                                        <td class="field_name" nowrap="nowrap">
+                                            Môn học:
+                                        </td>
+                                        <td>
+                                            <span id="ContentPlaceHolder1_lblCourse">(52480201) Ngành Công nghệ thông tin , (INT2209) Mạng máy tính</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr id="ContentPlaceHolder1_trDate">
+                                        <td class="field_name" nowrap="nowrap">
+                                            Năm xuất bản:
+                                        </td>
+                                        <td>
+                                            <span id="ContentPlaceHolder1_lblDate">2015</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr id="ContentPlaceHolder1_trEdataQuotaLeft">
+                                        <td class="field_name" nowrap="nowrap">
+                                            Số sách còn lại:
+                                        </td>
+                                        <td>
+                                            <span id="ContentPlaceHolder1_lblEdataQuotaLeft">Không giới hạn</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr id="ContentPlaceHolder1_trBorrowTime">
+                                        <td class="field_name" nowrap="nowrap">
+                                            Thời gian mượn:
+                                        </td>
+                                        <td>
+                                            <span id="ContentPlaceHolder1_lblBorrowTime">Bạn chưa đăng nhập.</span>
+                                        </td>
+                                    </tr>
+
+
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="timeline-box">
-                            <div class="timeline-icon bg-primary">
-                                <i class="fa fa-tasks"></i>
-                            </div>
-                            <div class="timeline-content">
-                                <h4 class="tl-title">consectetur adipisicing </h4> Lorem ipsum dolor sit amet. Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
-                            </div>
-                            <div class="timeline-footer">
-                                <span>Today. 10:55</span>
-                            </div>
-                        </div>
-                        <div class="timeline-box">
-                            <div class="timeline-icon bg-primary">
-                                <i class="fa fa-file"></i>
-                            </div>
-                            <div class="timeline-content">
-                                <h4 class="tl-title">Impedit iusto minima nisi</h4> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
-                            </div>
-                            <div class="timeline-footer">
-                                <span>Today. 9:20</span>
-                            </div>
-                        </div>
-                        <div class="timeline-box">
-                            <div class="timeline-icon bg-primary">
-                                <i class="fa fa-check"></i>
-                            </div>
-                            <div class="timeline-content">
-                                <h4 class="tl-title">Lorem ipsum dolor sit</h4> Lorem ipsum dolor sit amet Consequatur distinctio illo impedit iusto minima nisi quo tempora ut!
-                            </div>
-                            <div class="timeline-footer">
-                                <span>Yesteday. 16:30</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-        </div>
+
         <!-- RIGHT SIDEBAR -->
         <!-- ========================================================= -->
         <div class="right-sidebar">

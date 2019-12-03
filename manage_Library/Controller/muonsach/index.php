@@ -68,7 +68,7 @@
 			break;
 		case 'list':
 			$tblTable = 'muonsach';
-			$data = $db->getAllData($tblTable);
+			$data = $db->getAllDataList($tblTable);
             $tblStudent = 'student';
             $username = $_SESSION['user'];
             $dataStudents = $db->getDataStudents($tblStudent, $username);
@@ -191,6 +191,7 @@
 			break;
         case 'view':
 
+
             $tblTable1 = "student";
             $tblTable2 = "request";
             $dataRequest = $db->getDataRequests($tblTable1,$tblTable2);
@@ -212,6 +213,14 @@
             $data_Sach = $db->getAllData($tblTable11);
             $tableAccount = 'thanhvien';
             $totalAccount = $db->getTotalAccount($tableAccount);
+
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $table = 'sach';
+                $dataBook = $db->getDataID($table,$id);
+            }
+
+
 
             if (isset($_FILES['Avatar'])){
                 $tb = 'student';

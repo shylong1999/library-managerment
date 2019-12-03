@@ -37,11 +37,11 @@
         <div class="rightside-header">
             <div class="header-middle"></div>
             <!--SEARCH HEADERBOX-->
-            <div class="header-section" id="search-headerbox">
-                <input type="text" name="search" id="search" placeholder="Search...">
-                <i class="fa fa-search search" id="search-icon" aria-hidden="true"></i>
-                <div class="header-separator"></div>
-            </div>
+<!--            <div class="header-section" id="search-headerbox">-->
+<!--                <input type="text" name="search" id="search" placeholder="Search...">-->
+<!--                <i class="fa fa-search search" id="search-icon" aria-hidden="true"></i>-->
+<!--                <div class="header-separator"></div>-->
+<!--            </div>-->
             <div class="header-section" id="user-headerbox">
                 <div class="user-header-wrap">
                     <div class="user-photo">
@@ -146,14 +146,7 @@
                                     } ?>
                                 </ul>
                             </li>
-                            <?php if (isset($_SESSION['level'])) {
-                                if ($_SESSION['level'] == 1) {
-                                    ?>
-                                    <li><a href="index.php?controller=accounts&action=listAccount"><i class="fa fa-user"
-                                                                                                      aria-hidden="true"></i><span>Danh sách người dùng</span></a>
-                                    </li>
-                                <?php }
-                            } ?>
+
                             <!--TABLES-->
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-table" aria-hidden="true"></i><span>Yêu cầu mượn sách</span></a>
@@ -171,17 +164,24 @@
 
                                 </ul>
                             </li>
-
+                            <?php if (isset($_SESSION['level'])) {
+                                if ($_SESSION['level'] == 1) {
+                                    ?>
+                                    <li><a href="index.php?controller=accounts&action=listAccount"><i class="fa fa-user"
+                                                                                                      aria-hidden="true"></i><span>Danh sách người dùng</span></a>
+                                    </li>
+                                <?php }
+                            } ?>
                             <!--WIDGETS-->
-                            <li class="has-child-item close-item">
-                                <a><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Widgets</span></a>
-                                <ul class="nav child-nav level-1">
-                                    <li><a href="widgets_boxes.html">Boxes</a></li>
-                                    <li><a href="widgets_lists.html">Lists</a></li>
-                                    <li><a href="widgets_posts.html">Posts</a></li>
-                                    <li><a href="widgets_timelines.html">Timelines</a></li>
-                                </ul>
-                            </li>
+<!--                            <li class="has-child-item close-item">-->
+<!--                                <a><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Widgets</span></a>-->
+<!--                                <ul class="nav child-nav level-1">-->
+<!--                                    <li><a href="widgets_boxes.html">Boxes</a></li>-->
+<!--                                    <li><a href="widgets_lists.html">Lists</a></li>-->
+<!--                                    <li><a href="widgets_posts.html">Posts</a></li>-->
+<!--                                    <li><a href="widgets_timelines.html">Timelines</a></li>-->
+<!--                                </ul>-->
+<!--                            </li>-->
 
                         </ul>
                     </nav>
