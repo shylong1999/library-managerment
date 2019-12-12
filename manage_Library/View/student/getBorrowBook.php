@@ -41,11 +41,17 @@
                 <div class="user-header-wrap">
                     <div class="user-photo">
                         <?php
+                            if ($dataStudents['pathOfAvatar'] == ''){
+                                $pathToAvatar = 'avatar_user.jpg';
+                            }
+                            else{
+                                $pathToAvatar = $dataStudents['pathOfAvatar'];
+                            }
                             // $file_name = $dataStudents['pathOfAvatar'];
-                            $file_name = $dataStudents['pathOfAvatar'];;;
+//                            $file_name = $dataStudents['pathOfAvatar'];
                             //                            echo '<img alt="profile photo" src="../manage_Library/image/' . $file_name . '">';
 
-                            echo '<img alt="profile photo" src="View/images/avatar/' . $file_name . '" />';
+                            echo '<img alt="profile photo" src="View/images/avatar/' . $pathToAvatar . '" />';
                         ?>
                     </div>
                     <div class="user-info">

@@ -32,19 +32,18 @@
         <div class="rightside-header">
             <div class="header-middle"></div>
             <!--SEARCH HEADERBOX-->
-<!--            <div class="header-section" id="search-headerbox">-->
-<!--                <input type="text" name="search" id="search" placeholder="Search...">-->
-<!--                <i class="fa fa-search search" id="search-icon" aria-hidden="true"></i>-->
-<!--                <div class="header-separator"></div>-->
-<!--            </div>-->
+            <!--            <div class="header-section" id="search-headerbox">-->
+            <!--                <input type="text" name="search" id="search" placeholder="Search...">-->
+            <!--                <i class="fa fa-search search" id="search-icon" aria-hidden="true"></i>-->
+            <!--                <div class="header-separator"></div>-->
+            <!--            </div>-->
             <div class="header-section" id="user-headerbox">
                 <div class="user-header-wrap">
                     <div class="user-photo">
                         <?php
-                            if ($dataStudents['pathOfAvatar'] == ''){
+                            if ($dataStudents['pathOfAvatar'] == '') {
                                 $file_name = 'avatar_user.jpg';
-                            }
-                            else{
+                            } else {
                                 $file_name = $dataStudents['pathOfAvatar'];
                             }
                             echo '<img alt="profile photo" src="View/images/avatar/' . $file_name . '" />';
@@ -119,7 +118,7 @@
                                             <li><a href="index.php?controller=muon-sach&action=list">Danh sách mượn
                                                     sách</a>
                                             </li>
-                                        <?php } else{ ?>
+                                        <?php } else { ?>
                                             <li><a href="index.php?controller=students&action=studentBorrowBook">
                                                     Sách đã mượn</a>
                                             </li>
@@ -169,15 +168,15 @@
                                 <?php }
                             } ?>
                             <!--WIDGETS-->
-<!--                            <li class="has-child-item close-item">-->
-<!--                                <a><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Widgets</span></a>-->
-<!--                                <ul class="nav child-nav level-1">-->
-<!--                                    <li><a href="widgets_boxes.html">Boxes</a></li>-->
-<!--                                    <li><a href="widgets_lists.html">Lists</a></li>-->
-<!--                                    <li><a href="widgets_posts.html">Posts</a></li>-->
-<!--                                    <li><a href="widgets_timelines.html">Timelines</a></li>-->
-<!--                                </ul>-->
-<!--                            </li>-->
+                            <!--                            <li class="has-child-item close-item">-->
+                            <!--                                <a><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Widgets</span></a>-->
+                            <!--                                <ul class="nav child-nav level-1">-->
+                            <!--                                    <li><a href="widgets_boxes.html">Boxes</a></li>-->
+                            <!--                                    <li><a href="widgets_lists.html">Lists</a></li>-->
+                            <!--                                    <li><a href="widgets_posts.html">Posts</a></li>-->
+                            <!--                                    <li><a href="widgets_timelines.html">Timelines</a></li>-->
+                            <!--                                </ul>-->
+                            <!--                            </li>-->
 
                         </ul>
                     </nav>
@@ -199,39 +198,69 @@
             </div>
             <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
             <div class="row animated fadeInUp">
+
+                <!--SEARCH-->
+<!--                <div class="row">-->
+<!--                    <div class="col-sm-12">-->
+<!--                        <div class="panel">-->
+<!--                            <div class="panel-content">-->
+<!--                                <form class="">-->
+<!--                                    <div class="row pt-md">-->
+<!--                                        <div class="form-group col-sm-9 col-lg-10">-->
+<!--                                                <span class="input-with-icon">-->
+<!--                                            <input type="text" class="form-control" id="lefticon" placeholder="Search">-->
+<!--                                            <i class="fa fa-search"></i>-->
+<!--                                        </span>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group col-sm-3  col-lg-2 ">-->
+<!--                                            <button type="submit" class="btn btn-primary btn-block">Search</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                <!--RESULTS-->
+                <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <!--                                <h4>Results for <span class="highlight">"Dashboard Admin Template"</span></h4>-->
+                            <!--                                <h6>Total search results <b>147</b></h6>-->
+                            <div class="search-results-grid">
+
+                                <div class="row">
+                                    <?php foreach ($data_Sach as $value) { ?>
+                                        <div class="col-sm-6 col-md-3">
+                                            <!--                                            <a href="#"><img alt="photo" src="images/helsinki.jpg"-->
+                                            <!--                                                             class="img-responsive"></a>-->
+                                            <?php
+                                                $pathToBook = $value['name'];
+                                                //                            echo '<img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '" />';
+                                                echo '<a  href="../manage_Library/View/image/' . $pathToBook . '">
+                                <img style="height: 300px;" alt="photo" src="../manage_Library/View/image/' . $pathToBook . '" class="img-responsive">
+                            </a>'
+                                            ?>
+                                            <div class="search-item-content">
+                                                <h4 style="text-align: center"><a
+                                                            href="index.php?controller=thuvien-sach&action=infoBook&id=<?php echo $value['id']; ?>"><?php echo $value['tensach']; ?></a>
+                                                </h4>
+                                                <h4 class="color-muted" style="text-align: center">
+                                                    <a><?php echo $value['tacgia']; ?></a></h4>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
                 <!--WIDGET POST TYPE 1-->
-                <?php foreach ($data_Sach as $value) {?>
-                    <div class="col-sm-6 col-md-3">
-                        <!--Post type 1-->
-
-                        <div class="panel widget-post ">
-                            <div class="panel-header">
-                                <?php
-                                    $pathToBook = $value['name'];
-                                    //                            echo '<img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '" />';
-                                    echo '<a  href="../manage_Library/View/image/' . $pathToBook . '">
-                                <img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '">
-                            </a>'
-                                ?>
-
-                                <!--                            <img style="height: 20px;">-->
-                                <!--                            <div class="main-tag"><span>Adventure</span></div>-->
-                            </div>
-                            <div class="panel-content">
-                                <div class="text text-center">
-                                    <h4><a href="index.php?controller=thuvien-sach&action=infoBook&id=<?php echo $value['id']; ?>"><?php echo $value['tensach']; ?></a></h4>
-
-                                    <h6 class="color-muted"><a><?php echo $value['tacgia']; ?></a></h6>
-                                    <!--                                <hr class="mv-xs mh-lg" />-->
-                                    <!--                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, illum iste magni nam quo saepe temporibus</p>-->
-                                </div>
-                            </div>
-                            <!--                        <div class="panel-footer bg-scale-0 text-center pv-xs"><a href="#">Read more</a></div>-->
-                        </div>
-
-                    </div>
-                <?php } ?>
             </div>
 
             <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->

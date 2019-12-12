@@ -32,19 +32,20 @@
         <div class="rightside-header">
             <div class="header-middle"></div>
             <!--SEARCH HEADERBOX-->
-            <div class="header-section" id="search-headerbox">
-                <input type="text" name="search" id="search" placeholder="Search...">
-                <i class="fa fa-search search" id="search-icon" aria-hidden="true"></i>
-                <div class="header-separator"></div>
-            </div>
+            <!--            <div class="header-section" id="search-headerbox">-->
+            <!--                <input type="text" name="search" id="search" placeholder="Search...">-->
+            <!--                <i class="fa fa-search search" id="search-icon" aria-hidden="true"></i>-->
+            <!--                <div class="header-separator"></div>-->
+            <!--            </div>-->
             <div class="header-section" id="user-headerbox">
                 <div class="user-header-wrap">
                     <div class="user-photo">
                         <?php
-                            // $file_name = $dataStudents['pathOfAvatar'];
-                            $file_name = $dataStudents['pathOfAvatar'];;;
-                            //                            echo '<img alt="profile photo" src="../manage_Library/image/' . $file_name . '">';
-
+                            if ($dataStudents['pathOfAvatar'] == '') {
+                                $file_name = 'avatar_user.jpg';
+                            } else {
+                                $file_name = $dataStudents['pathOfAvatar'];
+                            }
                             echo '<img alt="profile photo" src="View/images/avatar/' . $file_name . '" />';
                         ?>
                     </div>
@@ -139,14 +140,7 @@
                                     } ?>
                                 </ul>
                             </li>
-                            <?php if (isset($_SESSION['level'])) {
-                                if ($_SESSION['level'] == 1) {
-                                    ?>
-                                    <li><a href="index.php?controller=accounts&action=listAccount"><i class="fa fa-user"
-                                                                                                      aria-hidden="true"></i><span>Danh sách người dùng</span></a>
-                                    </li>
-                                <?php }
-                            } ?>
+
                             <!--TABLES-->
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-table" aria-hidden="true"></i><span>Yêu cầu mượn sách</span></a>
@@ -165,16 +159,24 @@
                                 </ul>
                             </li>
 
+                            <?php if (isset($_SESSION['level'])) {
+                                if ($_SESSION['level'] == 1) {
+                                    ?>
+                                    <li><a href="index.php?controller=accounts&action=listAccount"><i class="fa fa-user"
+                                                                                                      aria-hidden="true"></i><span>Danh sách người dùng</span></a>
+                                    </li>
+                                <?php }
+                            } ?>
                             <!--WIDGETS-->
-                            <li class="has-child-item close-item">
-                                <a><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Widgets</span></a>
-                                <ul class="nav child-nav level-1">
-                                    <li><a href="widgets_boxes.html">Boxes</a></li>
-                                    <li><a href="widgets_lists.html">Lists</a></li>
-                                    <li><a href="widgets_posts.html">Posts</a></li>
-                                    <li><a href="widgets_timelines.html">Timelines</a></li>
-                                </ul>
-                            </li>
+                            <!--                            <li class="has-child-item close-item">-->
+                            <!--                                <a><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Widgets</span></a>-->
+                            <!--                                <ul class="nav child-nav level-1">-->
+                            <!--                                    <li><a href="widgets_boxes.html">Boxes</a></li>-->
+                            <!--                                    <li><a href="widgets_lists.html">Lists</a></li>-->
+                            <!--                                    <li><a href="widgets_posts.html">Posts</a></li>-->
+                            <!--                                    <li><a href="widgets_timelines.html">Timelines</a></li>-->
+                            <!--                                </ul>-->
+                            <!--                            </li>-->
 
                         </ul>
                     </nav>
@@ -189,157 +191,57 @@
                 <!-- leftside content header -->
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
-                        <li><i class="fa fa-columns" aria-hidden="true"></i><a href="#">Yêu cầu mượn sách</a></li>
-                        <li><a>Yêu cầu</a></li>
+                        <li><i class="fa fa-paper-plane" aria-hidden="true"></i><a href="#">Thư viện sách</a></li>
+                        <li><a>Danh sách</a></li>
                     </ul>
                 </div>
             </div>
             <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+            <div class="row animated fadeInUp">
 
-                    <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-                    <!--WIDGET POST TYPE 1-->
-                <div class="col-xs-12 col-sm-12 col-md-9 col-md-push-0">
-                    <div class="parts">
-                        <div class="name_part_detail">
-                            <h4>
-                               <?php echo "Tên sách" ?> </h4>
-                        </div>
-                        <div class="book_detail">
-                            <div class="img_book">
 
-                                    <table>
-                                        <tr>
-                                            <td colspan="2" style="border: #f6f2f2 solid 1px;">
-                                                <?php
-                                                    $pathToBook = "avatar_user.jpg";
-                                                    //                            echo '<img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '" />';
-                                                    echo '<a  href="../manage_Library/View/images/avatar/' . $pathToBook . '">
-                                <img style="height: 300px;" alt="post photo" src="../manage_Library/View/images/avatar/' . $pathToBook . '">
+                <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <!--                                <h4>Results for <span class="highlight">"Dashboard Admin Template"</span></h4>-->
+                            <!--                                <h6>Total search results <b>147</b></h6>-->
+                            <div class="search-results-grid">
+
+                                <div class="row">
+                                    <?php foreach ($data_Sach as $value) { ?>
+                                        <div class="col-sm-6 col-md-3">
+                                            <!--                                            <a href="#"><img alt="photo" src="images/helsinki.jpg"-->
+                                            <!--                                                             class="img-responsive"></a>-->
+                                            <?php
+                                                $pathToBook = $value['name'];
+                                                //                            echo '<img style="height: 300px;" alt="post photo" src="../manage_Library/View/image/' . $pathToBook . '" />';
+                                                echo '<a  href="../manage_Library/View/image/' . $pathToBook . '">
+                                <img style="height: 300px;" alt="photo" src="../manage_Library/View/image/' . $pathToBook . '" class="img-responsive">
                             </a>'
-                                                ?>
-                                            </td>
-                                        </tr>
+                                            ?>
+                                            <div class="search-item-content">
+                                                <h4 style="text-align: center"><a
+                                                            href="index.php?controller=thuvien-sach&action=infoBook&id=<?php echo $value['id']; ?>"><?php echo $value['tensach']; ?></a>
+                                                </h4>
+                                                <h4 class="color-muted" style="text-align: center">
+                                                    <a><?php echo $value['tacgia']; ?></a></h4>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                </div>
 
-                                    </table>
-                            </div>
-                            <div class="text_book">
-                                <h5>
-                                    <span>Th</span>
-                                </h5>
-                                <table>
-                                    <tbody>
-                                    <tr id="ContentPlaceHolder1_trEdataType">
-                                        <td class="field_name" nowrap="nowrap">
-                                            Loại tài liệu:
-                                        </td>
-                                        <td>
-                                            <span id="ContentPlaceHolder1_lblEdataType">Book</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr id="ContentPlaceHolder1_trEdataCode">
-                                        <td class="field_name" nowrap="nowrap">
-                                            Mã tài liệu:
-                                        </td>
-                                        <td>
-                                            <span id="ContentPlaceHolder1_lblEdataCode">82909</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr id="ContentPlaceHolder1_trLanguage">
-                                        <td class="field_name" nowrap="nowrap">
-                                            Mã ngôn ngữ:
-                                        </td>
-                                        <td>
-                                            <span id="ContentPlaceHolder1_lblLanguage">en</span>
-                                        </td>
-                                    </tr>
-
-
-                                    <tr id="ContentPlaceHolder1_trPublisher">
-                                        <td class="field_name" nowrap="nowrap">
-                                            Thông tin xuất bản:
-                                        </td>
-                                        <td>
-
-                                            <span id="ContentPlaceHolder1_lblPublisher">Springer</span>
-
-                                        </td>
-                                    </tr>
-
-
-                                    <tr id="ContentPlaceHolder1_trFormat">
-                                        <td class="field_name" nowrap="nowrap">
-                                            Tình trạng vật lý:
-                                        </td>
-                                        <td>
-                                            <span id="ContentPlaceHolder1_lblFormat">674 p.</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr id="ContentPlaceHolder1_trSubject">
-                                        <td class="field_name" nowrap="nowrap">
-                                            Từ khóa:
-                                        </td>
-                                        <td>
-                                            <span id="ContentPlaceHolder1_lblSubject">Hệ chuyên gia (Tin học) ; Công nghệ thông tin ; Quản lý tri thức ; Xử lý ảnh ; Expert systems (Computer science) -- Congresses. ; Information technology -- Congresses. ; Knowledge management ; Knowledge representation (Information theory) -- Congresses. ;</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr id="ContentPlaceHolder1_trCollection">
-                                        <td class="field_name" nowrap="nowrap">
-                                            Danh mục:
-                                        </td>
-                                        <td>
-                                            <span id="ContentPlaceHolder1_lblCollection">Khoa học & Công nghệ thông tin</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr id="ContentPlaceHolder1_trCourse">
-                                        <td class="field_name" nowrap="nowrap">
-                                            Môn học:
-                                        </td>
-                                        <td>
-                                            <span id="ContentPlaceHolder1_lblCourse">(52480201) Ngành Công nghệ thông tin , (INT2209) Mạng máy tính</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr id="ContentPlaceHolder1_trDate">
-                                        <td class="field_name" nowrap="nowrap">
-                                            Năm xuất bản:
-                                        </td>
-                                        <td>
-                                            <span id="ContentPlaceHolder1_lblDate">2015</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr id="ContentPlaceHolder1_trEdataQuotaLeft">
-                                        <td class="field_name" nowrap="nowrap">
-                                            Số sách còn lại:
-                                        </td>
-                                        <td>
-                                            <span id="ContentPlaceHolder1_lblEdataQuotaLeft">Không giới hạn</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr id="ContentPlaceHolder1_trBorrowTime">
-                                        <td class="field_name" nowrap="nowrap">
-                                            Thời gian mượn:
-                                        </td>
-                                        <td>
-                                            <span id="ContentPlaceHolder1_lblBorrowTime">Bạn chưa đăng nhập.</span>
-                                        </td>
-                                    </tr>
-
-
-
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
-            </div>
-            <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                    </div>
+                </div>
 
+
+                <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                <!--WIDGET POST TYPE 1-->
+            </div>
+
+            <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+        </div>
         <!-- RIGHT SIDEBAR -->
         <!-- ========================================================= -->
         <div class="right-sidebar">
@@ -449,5 +351,8 @@
         <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
     </div>
 </div>
+
+
 </body>
+
 </html>
